@@ -13,6 +13,10 @@ Android 向けの落下連鎖パズルゲーム。Kotlin + Jetpack Compose + Mat
 - **オート＋手動セーブ**: 中断復帰
 - **オフライン完結**: バックエンド不要 / インターネット権限不要（リリース版）
 
+<img width="478" height="1064" alt="gamen3" src="https://github.com/user-attachments/assets/2001f4ca-25dc-494a-8dc7-221b44c170d1" />
+<img width="475" height="1064" alt="gamen2" src="https://github.com/user-attachments/assets/59e3ad8b-ba2d-4c3b-a167-8f2f464938cf" />
+
+
 ## ドキュメント
 
 - 操作手順: [docs/操作手順書.md](docs/操作手順書.md)
