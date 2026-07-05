@@ -1,0 +1,13 @@
+# UI 改善 動的状態 発火: home error（S11 雛形）
+# 目的: 通信エラー時の error state を画面に出すこと。
+# スクショ取得は capture_all_screens.sh が adb screencap で行うため、この flow は撮影しない。
+# 機内モード ON の状態で起動するなど、実装に合わせて差し替える。
+appId: com.karakurai.prismalink
+---
+- launchApp:
+    clearState: true
+- assertVisible:
+    id: "home_root"
+- assertVisible:
+    id: "home_error"
+    optional: true

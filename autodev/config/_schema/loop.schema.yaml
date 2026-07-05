@@ -1,0 +1,133 @@
+# JSON Schema (draft-07) for autodev/config/loop.yaml（Android 版）
+# 案5: SessionStart hook と check_config.sh が利用。
+$schema: "http://json-schema.org/draft-07/schema#"
+title: AutoDev for Android loop.yaml
+type: object
+additionalProperties: false
+required:
+  - max_retry_per_loop
+  - no_progress_timeout_min
+  - max_env_repair_attempts
+  - persona_count_min
+  - persona_count_max
+  - persona_test_interval_features
+  - design_doc_max_lines
+  - application_id
+  - gradle_build_timeout_sec
+  - connected_test_timeout_sec
+properties:
+  max_retry_per_loop:
+    type: integer
+    minimum: 1
+    maximum: 100
+  no_progress_timeout_min:
+    type: integer
+    minimum: 1
+    maximum: 1440
+  max_env_repair_attempts:
+    type: integer
+    minimum: 1
+    maximum: 20
+  persona_count_min:
+    type: integer
+    minimum: 1
+  persona_count_max:
+    type: integer
+    minimum: 1
+  persona_test_interval_features:
+    type: integer
+    minimum: 1
+  design_doc_max_lines:
+    type: integer
+    minimum: 100
+  application_id:
+    type: string
+    pattern: "^[a-zA-Z][a-zA-Z0-9_]*(\\.[a-zA-Z][a-zA-Z0-9_]*)+$"
+    description: 開発対象アプリの applicationId。
+  gradle_build_timeout_sec:
+    type: integer
+    minimum: 60
+    maximum: 7200
+  connected_test_timeout_sec:
+    type: integer
+    minimum: 60
+    maximum: 14400
+  maestro_timeout_sec:
+    type: integer
+    minimum: 30
+    maximum: 7200
+  max_fix_cycles_per_persona_run:
+    type: integer
+    minimum: 1
+    maximum: 10
+    description: ペルソナテスト由来の改善要望に対する修正ループの最大再帰回数。
+  re_persona_after_fix:
+    type: string
+    enum: [all, minor_only, never]
+    description: 修正ループ完了後の再ペルソナテスト方針。
+  max_iterations_per_fix_loop:
+    type: integer
+    minimum: 1
+    maximum: 50
+    description: 修正ループ内のイテレーション数上限（無限ループ防止）。
+  # === 機能ループ F5.5 / F6.5 / 修正ループ R5.5 / R6.5 の設定（FR-5.9.8 / FR-5.9.9 / FR-5.21.2 / FR-5.21.3）===
+  feature_loop:
+    type: object
+    additionalProperties: false
+    description: 機能ループ F5.5（トレーサビリティ）/ F6.5（ペルソナテスト）の設定。
+    properties:
+      persona_test_enabled:
+        type: boolean
+        description: false で F6.5 をスキップ（段階導入用 / 規約15 のホワイトリスト対象）。
+      persona_test_max_cycles:
+        type: integer
+        minimum: 1
+        maximum: 10
+        description: F6.5 内の「修正→再ペルソナ」上限。
+      traceability_enabled:
+        type: boolean
+        description: false で F5.5 をスキップ（段階導入用 / 規約15 ホワイトリスト / FR-5.21.2）。
+      traceability_max_cycles:
+        type: integer
+        minimum: 1
+        maximum: 10
+        description: F5.5 内の「ギャップ検出→追加タスク→再走査」上限。
+  fix_loop:
+    type: object
+    additionalProperties: false
+    description: 修正ループ R5.5（トレーサビリティ）/ R6.5（ペルソナテスト）の設定。
+    properties:
+      persona_test_enabled:
+        type: boolean
+        description: false で R6.5 をスキップ（段階導入用 / 規約15 のホワイトリスト対象）。
+      persona_test_max_cycles:
+        type: integer
+        minimum: 1
+        maximum: 10
+        description: R6.5 内の「修正→再ペルソナ」上限。
+      persona_test_severity_threshold:
+        type: string
+        enum: [low, medium, high, never]
+        description: R6.5 発動の severity 足切り（low=全件 / never=常時 OFF）。
+      traceability_enabled:
+        type: boolean
+        description: false で R5.5 をスキップ（段階導入用 / 規約15 ホワイトリスト / FR-5.21.3）。
+      traceability_max_cycles:
+        type: integer
+        minimum: 1
+        maximum: 10
+        description: R5.5 内の「ギャップ検出→追加タスク→再走査」上限。
+  # === システムループ S6.5 要件↔設計 カバレッジ確認（FR-5.21.1）===
+  coverage_check:
+    type: object
+    additionalProperties: false
+    description: システムループ S6.5（全機能設計書 先行作成＆要件カバレッジ確認）の設定。
+    properties:
+      enabled:
+        type: boolean
+        description: false で S6.5 をスキップ（段階導入用 / 規約15 ホワイトリスト）。
+      max_cycles:
+        type: integer
+        minimum: 1
+        maximum: 10
+        description: S6.5 内の「設計修正→再照合」上限。

@@ -1,0 +1,51 @@
+{
+  "schema_version": "5.2",
+  "target": "ローカルランキング",
+  "scope": "feature",
+  "design_doc_ref": "docs/設計/features/ローカルランキング.md",
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "TOP10 LazyColumn + mode タブ",
+      "layer": "ui",
+      "category": "画面要素",
+      "design_doc_ref": {
+        "file": "docs/設計/features/ローカルランキング.要素",
+        "section": "d#画面要素"
+      },
+      "files": [
+        "app/src/main/java/com/example/myapp/ui/screen/RankingScreen.kt"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "T2",
+      "title": "TOP10 LazyColumn + mode タブ - ユーザー操作 & エラーケース",
+      "layer": "ui",
+      "category": "ユーザー操作",
+      "design_doc_ref": {
+        "file": "docs/設計/features/ローカルランキング.操作",
+        "section": "d#ユーザー操作"
+      },
+      "files": [
+        "app/src/main/java/com/example/myapp/ui/screen/RankingScreen.kt"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "T3",
+      "title": "TOP10 LazyColumn + mode タブ - 受け入れ条件 (Maestro smoke + 起動)",
+      "layer": "ui_test",
+      "category": "受け入れ条件",
+      "design_doc_ref": {
+        "file": "docs/設計/features/ローカルランキング.条件",
+        "section": "d#受け入れ条件"
+      },
+      "files": [
+        "maestro/smoke_title.yaml",
+        "autodev/evidence/screenshots/ui_phase1/title.png"
+      ],
+      "status": "completed"
+    }
+  ]
+}

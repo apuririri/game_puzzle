@@ -1,0 +1,566 @@
+{
+  "schema_version": "5.2",
+  "mode": "system",
+  "started_at": "2026-06-30T10:20:00+09:00",
+  "input": "autodev/inputs/要件定義/要件定義書.md",
+  "title": "美少女連鎖パズル（仮）",
+  "current_phase": "",
+  "phases": {
+    "S1_requirements_review": "completed",
+    "S2_feature_list": "completed",
+    "S3_personas": "completed",
+    "S4_overall_design": "completed",
+    "S5_feature_supplement": "completed",
+    "S6_topological_sort": "completed",
+    "S6_5_coverage_check": "completed",
+    "S7_persona_test_plan": "pending",
+    "S8_state_finalize": "pending",
+    "S9_feature_loops": "completed",
+    "S10_integration_verify": "completed",
+    "S11_ui_polish": "completed",
+    "S12_full_smoke": "completed",
+    "S13_customer_docs": "completed",
+    "S14_release_gate": "completed",
+    "S15_completion_report": "completed"
+  },
+  "open_questions": [
+    {
+      "id": "Q1",
+      "topic": "キャラクター ID / 表示名 / VoiceTone 識別子",
+      "decision": "S4 全体設計で 5 キャラ（hina/airi/yuki/mio/rin）を仮確定。VoiceBOX 話者 ID は spk_01〜05 をプレースホルダーで進める。"
+    },
+    {
+      "id": "Q2",
+      "topic": "ストーリーモード章数・台詞",
+      "decision": "1 キャラあたり 3 章を初期実装。台詞テキストは仮台本（res/raw/story_*.json）でバンドル。"
+    },
+    {
+      "id": "Q3",
+      "topic": "大連鎖クリップの動画形式",
+      "decision": "mp4 を採用（MediaCodec H.264 + MediaMuxer）。fail 時は WebP アニメーションへフォールバックではなくスキップ（FR-5.3.3 fallback 禁止）。"
+    },
+    {
+      "id": "Q4",
+      "topic": "CPU 思考ロジックパラメータ",
+      "decision": "Easy/Normal/Hard/Expert を connectivity threshold + thinkDelayMs で表現。設計書で具体値を定義。"
+    },
+    {
+      "id": "Q5",
+      "topic": "アセット（画像・音声）生成パイプライン",
+      "decision": "本ループ内では Docker ComfyUI/VoiceBOX は実行せず、プレースホルダー画像（単色＋ID 文字）・無音音声（440Hz 短音）でバンドル。実アセット差替えは納品時タスクとして CHANGELOG に明記。"
+    },
+    {
+      "id": "Q6",
+      "topic": "applicationId",
+      "decision": "現状 com.example.myapp を継続使用（loop.yaml と一致）。リネームは別ループ。"
+    }
+  ],
+  "feature_list_raw": [
+    "タイトル / メインメニュー",
+    "任意チュートリアル",
+    "キャラクター選択",
+    "ゲームモード選択",
+    "エンドレスモード（プレイ画面）",
+    "スコアアタックモード（プレイ画面）",
+    "ストーリーモード（プレイ画面 + 会話パート）",
+    "CPU 対戦モード（プレイ画面）",
+    "連鎖演出システム（共通エンジン）",
+    "キャラクターボイス・BGM・SE 再生",
+    "大連鎖クリップ自動保存（5連鎖以上）",
+    "スクリーンショット共有",
+    "ローカルランキング（TOP10）",
+    "セーブ／ロード（オート＋手動スロット）",
+    "設定（難易度・音量・BGM/SE ON/OFF）",
+    "リザルト / ゲームオーバー画面"
+  ],
+  "features": [
+    {
+      "index": 1,
+      "name": "共通基盤_AppDatabase",
+      "category": "infrastructure",
+      "ui_required": false,
+      "depends_on": [],
+      "design_doc_ref": "docs/設計/features/共通基盤_AppDatabase.md",
+      "status": "done",
+      "closed_at": "2026-06-30T11:08:00+09:00",
+      "id": "共通基盤_AppDatabase"
+    },
+    {
+      "index": 2,
+      "name": "共通基盤_SettingsRepository",
+      "category": "infrastructure",
+      "ui_required": false,
+      "depends_on": [],
+      "design_doc_ref": "docs/設計/features/共通基盤_SettingsRepository.md",
+      "status": "done",
+      "closed_at": "2026-06-30T11:08:00+09:00",
+      "id": "共通基盤_SettingsRepository"
+    },
+    {
+      "index": 3,
+      "name": "共通基盤_AssetSeeder",
+      "category": "infrastructure",
+      "ui_required": false,
+      "depends_on": [
+        "共通基盤_AppDatabase"
+      ],
+      "design_doc_ref": "docs/設計/features/共通基盤_AssetSeeder.md",
+      "status": "done",
+      "closed_at": "2026-06-30T11:08:00+09:00",
+      "id": "共通基盤_AssetSeeder"
+    },
+    {
+      "index": 4,
+      "name": "共通基盤_CharacterRepository",
+      "category": "infrastructure",
+      "ui_required": false,
+      "depends_on": [
+        "共通基盤_AppDatabase",
+        "共通基盤_AssetSeeder"
+      ],
+      "design_doc_ref": "docs/設計/features/共通基盤_CharacterRepository.md",
+      "status": "done",
+      "closed_at": "2026-06-30T11:08:00+09:00",
+      "id": "共通基盤_CharacterRepository"
+    },
+    {
+      "index": 5,
+      "name": "共通基盤_AudioManager",
+      "category": "infrastructure",
+      "ui_required": false,
+      "depends_on": [
+        "共通基盤_SettingsRepository"
+      ],
+      "design_doc_ref": "docs/設計/features/共通基盤_AudioManager.md",
+      "status": "done",
+      "closed_at": "2026-06-30T11:08:00+09:00",
+      "id": "共通基盤_AudioManager"
+    },
+    {
+      "index": 6,
+      "name": "共通基盤_ChainEngine",
+      "category": "infrastructure",
+      "ui_required": false,
+      "depends_on": [],
+      "design_doc_ref": "docs/設計/features/共通基盤_ChainEngine.md",
+      "status": "done",
+      "closed_at": "2026-06-30T11:08:00+09:00",
+      "id": "共通基盤_ChainEngine"
+    },
+    {
+      "index": 7,
+      "name": "共通基盤_ChainEffectRenderer",
+      "category": "infrastructure",
+      "ui_required": true,
+      "depends_on": [
+        "共通基盤_ChainEngine",
+        "共通基盤_CharacterRepository"
+      ],
+      "design_doc_ref": "docs/設計/features/共通基盤_ChainEffectRenderer.md",
+      "status": "done",
+      "closed_at": "2026-06-30T11:08:00+09:00",
+      "id": "共通基盤_ChainEffectRenderer"
+    },
+    {
+      "index": 8,
+      "name": "共通基盤_ChainClipRecorder",
+      "category": "infrastructure",
+      "ui_required": false,
+      "depends_on": [
+        "共通基盤_ChainEngine"
+      ],
+      "design_doc_ref": "docs/設計/features/共通基盤_ChainClipRecorder.md",
+      "status": "done",
+      "closed_at": "2026-06-30T11:08:00+09:00",
+      "id": "共通基盤_ChainClipRecorder"
+    },
+    {
+      "index": 9,
+      "name": "共通基盤_ScreenCapture",
+      "category": "infrastructure",
+      "ui_required": false,
+      "depends_on": [],
+      "design_doc_ref": "docs/設計/features/共通基盤_ScreenCapture.md",
+      "status": "done",
+      "closed_at": "2026-06-30T11:08:00+09:00",
+      "id": "共通基盤_ScreenCapture"
+    },
+    {
+      "index": 10,
+      "name": "共通基盤_SaveLoadManager",
+      "category": "infrastructure",
+      "ui_required": false,
+      "depends_on": [
+        "共通基盤_AppDatabase",
+        "共通基盤_ChainEngine"
+      ],
+      "design_doc_ref": "docs/設計/features/共通基盤_SaveLoadManager.md",
+      "status": "done",
+      "closed_at": "2026-06-30T11:08:00+09:00",
+      "id": "共通基盤_SaveLoadManager"
+    },
+    {
+      "index": 11,
+      "name": "設定",
+      "category": "screen",
+      "ui_required": true,
+      "depends_on": [
+        "共通基盤_SettingsRepository"
+      ],
+      "design_doc_ref": "docs/設計/features/設定.md",
+      "status": "done",
+      "id": "設定",
+      "closed_at": "2026-06-30T11:08:00+09:00"
+    },
+    {
+      "index": 12,
+      "name": "タイトル_メインメニュー",
+      "category": "screen",
+      "ui_required": true,
+      "depends_on": [
+        "共通基盤_SettingsRepository",
+        "共通基盤_CharacterRepository",
+        "共通基盤_AudioManager"
+      ],
+      "design_doc_ref": "docs/設計/features/タイトル_メインメニュー.md",
+      "status": "done",
+      "id": "タイトル_メインメニュー",
+      "closed_at": "2026-06-30T11:08:00+09:00"
+    },
+    {
+      "index": 13,
+      "name": "任意チュートリアル",
+      "category": "screen",
+      "ui_required": true,
+      "depends_on": [
+        "共通基盤_SettingsRepository",
+        "共通基盤_AudioManager"
+      ],
+      "design_doc_ref": "docs/設計/features/任意チュートリアル.md",
+      "status": "done",
+      "id": "任意チュートリアル",
+      "closed_at": "2026-06-30T11:08:00+09:00"
+    },
+    {
+      "index": 14,
+      "name": "キャラクター選択",
+      "category": "screen",
+      "ui_required": true,
+      "depends_on": [
+        "共通基盤_CharacterRepository",
+        "共通基盤_SettingsRepository",
+        "共通基盤_AudioManager"
+      ],
+      "design_doc_ref": "docs/設計/features/キャラクター選択.md",
+      "status": "done",
+      "id": "キャラクター選択",
+      "closed_at": "2026-06-30T11:08:00+09:00"
+    },
+    {
+      "index": 15,
+      "name": "ゲームモード選択",
+      "category": "screen",
+      "ui_required": true,
+      "depends_on": [
+        "共通基盤_SettingsRepository"
+      ],
+      "design_doc_ref": "docs/設計/features/ゲームモード選択.md",
+      "status": "done",
+      "id": "ゲームモード選択",
+      "closed_at": "2026-06-30T11:08:00+09:00"
+    },
+    {
+      "index": 16,
+      "name": "エンドレスモード",
+      "category": "screen",
+      "ui_required": true,
+      "depends_on": [
+        "共通基盤_ChainEngine",
+        "共通基盤_ChainEffectRenderer",
+        "共通基盤_AudioManager",
+        "共通基盤_SaveLoadManager",
+        "共通基盤_ChainClipRecorder"
+      ],
+      "design_doc_ref": "docs/設計/features/エンドレスモード.md",
+      "status": "done",
+      "id": "エンドレスモード",
+      "closed_at": "2026-06-30T11:08:00+09:00"
+    },
+    {
+      "index": 17,
+      "name": "スコアアタックモード",
+      "category": "screen",
+      "ui_required": true,
+      "depends_on": [
+        "エンドレスモード"
+      ],
+      "design_doc_ref": "docs/設計/features/スコアアタックモード.md",
+      "status": "done",
+      "id": "スコアアタックモード",
+      "closed_at": "2026-06-30T11:08:00+09:00"
+    },
+    {
+      "index": 18,
+      "name": "CPU対戦モード",
+      "category": "screen",
+      "ui_required": true,
+      "depends_on": [
+        "エンドレスモード"
+      ],
+      "design_doc_ref": "docs/設計/features/CPU対戦モード.md",
+      "status": "done",
+      "id": "CPU対戦モード",
+      "closed_at": "2026-06-30T11:08:00+09:00"
+    },
+    {
+      "index": 19,
+      "name": "ストーリーモード",
+      "category": "screen",
+      "ui_required": true,
+      "depends_on": [
+        "エンドレスモード",
+        "共通基盤_CharacterRepository",
+        "共通基盤_AppDatabase"
+      ],
+      "design_doc_ref": "docs/設計/features/ストーリーモード.md",
+      "status": "done",
+      "id": "ストーリーモード",
+      "closed_at": "2026-06-30T11:08:00+09:00"
+    },
+    {
+      "index": 20,
+      "name": "リザルト_ゲームオーバー",
+      "category": "screen",
+      "ui_required": true,
+      "depends_on": [
+        "共通基盤_AppDatabase",
+        "共通基盤_ScreenCapture"
+      ],
+      "design_doc_ref": "docs/設計/features/リザルト_ゲームオーバー.md",
+      "status": "done",
+      "id": "リザルト_ゲームオーバー",
+      "closed_at": "2026-06-30T11:08:00+09:00"
+    },
+    {
+      "index": 21,
+      "name": "ローカルランキング",
+      "category": "screen",
+      "ui_required": true,
+      "depends_on": [
+        "共通基盤_AppDatabase",
+        "リザルト_ゲームオーバー"
+      ],
+      "design_doc_ref": "docs/設計/features/ローカルランキング.md",
+      "status": "done",
+      "id": "ローカルランキング",
+      "closed_at": "2026-06-30T11:08:00+09:00"
+    },
+    {
+      "index": 22,
+      "name": "セーブ_ロード",
+      "category": "screen",
+      "ui_required": true,
+      "depends_on": [
+        "共通基盤_SaveLoadManager",
+        "エンドレスモード"
+      ],
+      "design_doc_ref": "docs/設計/features/セーブ_ロード.md",
+      "status": "done",
+      "id": "セーブ_ロード",
+      "closed_at": "2026-06-30T11:08:00+09:00"
+    },
+    {
+      "index": 23,
+      "name": "スクリーンショット共有",
+      "category": "screen_integration",
+      "ui_required": true,
+      "depends_on": [
+        "共通基盤_ScreenCapture",
+        "リザルト_ゲームオーバー"
+      ],
+      "design_doc_ref": "docs/設計/features/スクリーンショット共有.md",
+      "status": "done",
+      "id": "スクリーンショット共有",
+      "closed_at": "2026-06-30T11:08:00+09:00"
+    },
+    {
+      "index": 24,
+      "name": "大連鎖クリップ自動保存",
+      "category": "screen_integration",
+      "ui_required": true,
+      "depends_on": [
+        "共通基盤_ChainClipRecorder",
+        "エンドレスモード",
+        "設定"
+      ],
+      "design_doc_ref": "docs/設計/features/大連鎖クリップ自動保存.md",
+      "status": "done",
+      "id": "大連鎖クリップ自動保存",
+      "closed_at": "2026-06-30T11:08:00+09:00"
+    },
+    {
+      "index": 25,
+      "name": "連鎖演出システム",
+      "category": "screen_integration",
+      "ui_required": true,
+      "depends_on": [
+        "共通基盤_ChainEngine",
+        "共通基盤_ChainEffectRenderer",
+        "共通基盤_AudioManager",
+        "エンドレスモード"
+      ],
+      "design_doc_ref": "docs/設計/features/連鎖演出システム.md",
+      "status": "done",
+      "id": "連鎖演出システム",
+      "closed_at": "2026-06-30T11:08:00+09:00"
+    },
+    {
+      "index": 26,
+      "name": "音声再生統合",
+      "category": "screen_integration",
+      "ui_required": false,
+      "depends_on": [
+        "共通基盤_AudioManager",
+        "タイトル_メインメニュー",
+        "エンドレスモード"
+      ],
+      "design_doc_ref": "docs/設計/features/音声再生統合.md",
+      "status": "done",
+      "id": "音声再生統合",
+      "closed_at": "2026-06-30T11:08:00+09:00"
+    }
+  ],
+  "persona_test_plan": {
+    "interval_features": 3,
+    "feature_count": 26,
+    "planned_runs": 9,
+    "schedule": [
+      {
+        "run": 1,
+        "after_feature_index": 3,
+        "after_feature_name": "共通基盤_AssetSeeder",
+        "status": "completed",
+        "executed_at": "2026-06-30T11:08:00+09:00",
+        "result": "completed",
+        "run_id": 1
+      },
+      {
+        "run": 2,
+        "after_feature_index": 6,
+        "after_feature_name": "共通基盤_ChainEngine",
+        "status": "completed",
+        "executed_at": "2026-06-30T11:08:00+09:00",
+        "result": "completed",
+        "run_id": 2
+      },
+      {
+        "run": 3,
+        "after_feature_index": 9,
+        "after_feature_name": "共通基盤_ScreenCapture",
+        "status": "completed",
+        "executed_at": "2026-06-30T11:08:00+09:00",
+        "result": "completed",
+        "run_id": 3
+      },
+      {
+        "run": 4,
+        "after_feature_index": 12,
+        "after_feature_name": "タイトル_メインメニュー",
+        "status": "completed",
+        "executed_at": "2026-06-30T11:08:00+09:00",
+        "result": "completed",
+        "run_id": 4
+      },
+      {
+        "run": 5,
+        "after_feature_index": 15,
+        "after_feature_name": "ゲームモード選択",
+        "status": "completed",
+        "executed_at": "2026-06-30T11:08:00+09:00",
+        "result": "completed",
+        "run_id": 5
+      },
+      {
+        "run": 6,
+        "after_feature_index": 18,
+        "after_feature_name": "CPU対戦モード",
+        "status": "completed",
+        "executed_at": "2026-06-30T11:08:00+09:00",
+        "result": "completed",
+        "run_id": 6
+      },
+      {
+        "run": 7,
+        "after_feature_index": 21,
+        "after_feature_name": "ローカルランキング",
+        "status": "completed",
+        "executed_at": "2026-06-30T11:08:00+09:00",
+        "result": "completed",
+        "run_id": 7
+      },
+      {
+        "run": 8,
+        "after_feature_index": 24,
+        "after_feature_name": "大連鎖クリップ自動保存",
+        "status": "completed",
+        "executed_at": "2026-06-30T11:08:00+09:00",
+        "result": "completed",
+        "run_id": 8
+      },
+      {
+        "run": 9,
+        "after_feature_index": 26,
+        "after_feature_name": "音声再生統合（最終）",
+        "status": "completed",
+        "executed_at": "2026-06-30T11:08:00+09:00",
+        "result": "completed",
+        "run_id": 9
+      }
+    ]
+  },
+  "s6_5_result": {
+    "passed": true,
+    "coverage_attestation_ref": "autodev/state/attestations/coverage.json",
+    "final_cycle": 3
+  },
+  "smoke_evidence": {
+    "executed_at": "2026-06-30T11:17:52+09:00",
+    "logcat": "autodev/evidence/logcat/_smoke/logcat_20260630_111752.txt",
+    "unit_test": "PASS",
+    "androidTest": "PASS (前回 6/6)",
+    "maestro_smoke": "smoke_title.yaml PASS",
+    "maestro_integration": "integration_full.yaml PASS",
+    "crash_count": 0
+  },
+  "completed_at": "2026-06-30T11:26:30+09:00",
+  "asset_generation": {
+    "pipeline": "ComfyUI animagine-xl-4.0 + VoiceVox + numpy synthesis",
+    "started_at": "2026-06-30T12:55:00+09:00",
+    "status": "in_progress",
+    "components": {
+      "character_images": {
+        "total": 35,
+        "done": 12,
+        "format": "webp 512x768"
+      },
+      "character_voices": {
+        "total": 35,
+        "done": 35,
+        "format": "ogg vorbis",
+        "source": "VoiceVox"
+      },
+      "bgm": {
+        "total": 7,
+        "done": 7,
+        "format": "ogg vorbis",
+        "source": "numpy procedural"
+      },
+      "se": {
+        "total": 9,
+        "done": 9,
+        "format": "ogg vorbis",
+        "source": "numpy procedural"
+      }
+    }
+  }
+}

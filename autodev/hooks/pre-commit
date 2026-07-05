@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Git pre-commit hook（FR-5.13.6 / FR-5.13.7）。
+# - build/ / local.properties / keystore / .env / DB ファイルが staged されていたら拒否
+# - 進捗.md 同期チェック（警告）
+# setup スクリプトが core.hooksPath を autodev/hooks に向けることで有効化される。
+set -uo pipefail
+ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+
+STAGED="$(git diff --cached --name-only)"
+BAD="$(echo "$STAGED" | grep -E '(^|/)build/|(^|/)\.gradle/|(^|/)local\.properties$|(^|/)autodev/secrets/|\.keystore$|\.jks$|(^|/)\.env$' || true)"
+if [ -n "$BAD" ]; then
+  echo "[pre-commit] 以下はコミット禁止です（.gitignore 漏れ / 秘密情報・生成物）:" >&2
+  echo "$BAD" >&2
+  exit 1
+fi
+
+# DB ファイル・APK の混入も拒否（autodev/artifacts は ignore 済みのはず）
+DBF="$(echo "$STAGED" | grep -E '\.sqlite3$|\.db$|\.apk$|\.aab$' || true)"
+if [ -n "$DBF" ]; then echo "[pre-commit] DB/APK ファイルはコミット禁止: $DBF" >&2; exit 1; fi
+
+# 進捗.md 同期（警告のみ。CI ではない dev hook のため止めない）
+if [ -x "$ROOT/autodev/scripts/check_progress_md_sync.sh" ]; then
+  "$ROOT/autodev/scripts/check_progress_md_sync.sh" >/dev/null 2>&1 || echo "[pre-commit] 警告: 進捗.md が未同期かもしれません。" >&2
+fi
+exit 0

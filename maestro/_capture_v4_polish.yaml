@@ -1,0 +1,33 @@
+appId: com.karakurai.prismalink
+---
+- launchApp:
+    clearState: false
+- takeScreenshot: v4_title
+- tapOn:
+    id: "title_start_button"
+- assertVisible:
+    id: "mode_select_root"
+- takeScreenshot: v4_mode_select
+- tapOn:
+    id: "mode_back_button"
+- tapOn:
+    id: "title_character_select_button"
+- takeScreenshot: v4_character_select
+- tapOn:
+    id: "character_confirm_button"
+- tapOn:
+    id: "title_tutorial_button"
+- takeScreenshot: v4_tutorial
+- tapOn:
+    id: "tutorial_skip_button"
+- tapOn:
+    id: "title_ranking_button"
+- takeScreenshot: v4_ranking
+- tapOn:
+    id: "ranking_back_button"
+- tapOn:
+    id: "title_start_button"
+- tapOn:
+    id: "mode_story_button"
+- waitForAnimationToEnd
+- takeScreenshot: v4_story

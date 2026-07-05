@@ -1,0 +1,11 @@
+# ============================================================
+# 無人運用 watchdog 設定（opt-in）。flat キー（grep で読む）。
+# setup_watchdog.sh で enabled:true ＋ crontab 登録。teardown で解除。
+# 対象環境: Linux / macOS / WSL（tmux 必須）。Windows ネイティブは WSL を使用。
+# ============================================================
+enabled: false              # setup_watchdog.sh が true にする
+interval_min: 5             # cron 実行間隔（分）
+stale_min: 15               # heartbeat がこの分数 stale なら停止とみなす
+tmux_session: autodev       # claude を常駐させる tmux セッション名
+max_restarts_per_hour: 6    # 1時間あたりの再プロンプト/再起動の上限（暴走防止）
+resume_prompt: 作業を再開して  # 停止検知時に同一セッションへ送る再開プロンプト

@@ -1,0 +1,46 @@
+# ============================================================
+# Android 環境バージョンのピン留め（修正方針 §6-2）
+# setup.sh / check_android_setup.sh / ラッパー類はすべてここを参照する。
+# 版数をスクリプトへハードコードしてはならない。
+# 更新は本ファイルの変更 + setup.sh 再実行（冪等）で完結させる。
+# ============================================================
+
+sdk:
+  # 空なら $HOME/Android/Sdk（既存SDKがあれば検証して再利用）
+  root: ""
+  # cmdline-tools の zip 版数（dl.google.com の commandlinetools-linux-<ver>_latest.zip）
+  cmdline_tools_version: "11076708"
+  platform: "android-35"
+  build_tools: "35.0.0"
+  system_image: "system-images;android-35;google_apis;x86_64"
+
+jdk:
+  # 空なら $HOME/.autodev-android/jdk
+  dir: ""
+  major: 17
+  # Temurin 17 (linux x64) の取得URL。チェックサムを併記した場合は検証する（空なら警告のみ）。
+  url_linux_x64: "https://api.adoptium.net/v3/binary/latest/17/ga/linux/x64/jdk/hotspot/normal/eclipse?project=jdk"
+  sha256: ""
+
+avd:
+  name: "autodev_api35"
+  device_profile: "pixel_6"
+
+emulator:
+  # 既定 headless（-no-window）。人間が見たいときは HEADFUL=1 で上書き（FR-5.14.7 踏襲）。
+  headless: true
+  gpu: "swiftshader_indirect"
+  boot_timeout_sec: 180
+  # KVM 不可時に -no-accel で続行するか（極端に遅くなるため警告付き）
+  allow_no_accel: true
+
+gradle:
+  # Gradle 本体の版数。gradle/wrapper が未生成のとき setup.sh がこの版で wrapper を生成する。
+  version: "8.9"
+
+maestro:
+  # 空なら GitHub Releases の latest を取得。固定したい場合はリリース版数を指定（例 "1.39.13"
+  # → https://github.com/mobile-dev-inc/maestro/releases/download/cli-1.39.13/maestro.zip）。
+  version: ""
+  # 空なら $HOME/.maestro
+  home: ""

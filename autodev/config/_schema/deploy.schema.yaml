@@ -1,0 +1,60 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+title: AutoDev for Android deploy.yaml
+type: object
+additionalProperties: false
+required:
+  - environments
+  - promotions
+  - defaults
+properties:
+  environments:
+    type: object
+    minProperties: 1
+    additionalProperties:
+      type: object
+      additionalProperties: false
+      required: [role, kind, build_type]
+      properties:
+        role:
+          type: string
+          enum: [dev, staging, production]
+        kind:
+          type: string
+          enum: [avd, adb-device]
+        serial:
+          type: string
+          description: adb デバイスシリアル（adb-device のみ。空なら自動選択）。
+        avd_name:
+          type: string
+          description: AVD 名の上書き（空なら android_env.yaml::avd.name）。
+        build_type:
+          type: string
+          enum: [debug, release]
+        requires_approval:
+          type: boolean
+  promotions:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      required: [from, to]
+      properties:
+        from: { type: string }
+        to: { type: string }
+  defaults:
+    type: object
+    additionalProperties: false
+    properties:
+      build_strategy:
+        type: string
+        enum: [rebuild, promote]
+      require_smoke:
+        type: boolean
+      boot_timeout_sec:
+        type: integer
+        minimum: 1
+      auto_rollback:
+        type: boolean
+      artifact_keep:
+        type: integer
+        minimum: 1

@@ -1,0 +1,15 @@
+appId: com.karakurai.prismalink
+---
+- launchApp:
+    clearState: false
+- tapOn:
+    id: "title_settings_button"
+- assertVisible:
+    id: "settings_root"
+- assertVisible:
+    id: "settings_bgm_preview_button"
+- assertVisible:
+    id: "settings_se_preview_button"
+- assertVisible:
+    id: "settings_voice_preview_button"
+- takeScreenshot: settings_v2

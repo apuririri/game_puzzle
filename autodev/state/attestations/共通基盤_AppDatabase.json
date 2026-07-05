@@ -1,0 +1,56 @@
+{
+  "schema_version": "5.2",
+  "target": "共通基盤_AppDatabase",
+  "scope": "feature",
+  "category": "infrastructure",
+  "ui_required": false,
+  "closed_at": "2026-06-30T10:48:00+09:00",
+  "design_doc_ref": "docs/設計/features/共通基盤_AppDatabase.md",
+  "gates": [
+    {"name": "check_design_sync.sh", "result": "ok"},
+    {"name": "check_dead_assets.sh", "result": "ok"},
+    {"name": "check_room_schema.sh", "result": "ok"},
+    {"name": "check_real_device_evidence.sh", "result": "ok"},
+    {"name": "check_persona_test_evidence.sh feature", "result": "ok"},
+    {"name": "check_progress_md_sync.sh", "result": "ok"}
+  ],
+  "iterations": 1,
+  "implementation": {
+    "entities": [
+      "app/src/main/java/com/example/myapp/data/local/entity/CharacterEntity.kt",
+      "app/src/main/java/com/example/myapp/data/local/entity/CharacterImageEntity.kt",
+      "app/src/main/java/com/example/myapp/data/local/entity/HighScoreEntity.kt",
+      "app/src/main/java/com/example/myapp/data/local/entity/StoryProgressEntity.kt",
+      "app/src/main/java/com/example/myapp/data/local/entity/SaveSlotEntity.kt",
+      "app/src/main/java/com/example/myapp/data/local/entity/AutoSaveEntity.kt"
+    ],
+    "daos": [
+      "app/src/main/java/com/example/myapp/data/local/dao/CharacterDao.kt",
+      "app/src/main/java/com/example/myapp/data/local/dao/HighScoreDao.kt",
+      "app/src/main/java/com/example/myapp/data/local/dao/StoryProgressDao.kt",
+      "app/src/main/java/com/example/myapp/data/local/dao/SaveSlotDao.kt",
+      "app/src/main/java/com/example/myapp/data/local/dao/AutoSaveDao.kt"
+    ],
+    "database": "app/src/main/java/com/example/myapp/data/local/AppDatabase.kt (v1)",
+    "schema": "app/schemas/com.example.myapp.data.local.AppDatabase/1.json"
+  },
+  "tests": {
+    "androidTest": [
+      {"class": "com.example.myapp.data.local.AppDatabaseTest", "test_count": 6, "result": "PASS"}
+    ]
+  },
+  "real_device_evidence": {
+    "screenshots_dir": "autodev/evidence/screenshots/共通基盤_AppDatabase",
+    "logcat_dir": "autodev/evidence/logcat/共通基盤_AppDatabase",
+    "verified_at": "2026-06-30T10:36:45+09:00",
+    "device_serial": "emulator-5554"
+  },
+  "evidence": {
+    "screenshots": "autodev/evidence/screenshots/共通基盤_AppDatabase/final_103644.png",
+    "logcat": "autodev/evidence/logcat/共通基盤_AppDatabase/logcat_20260630_103645.txt"
+  },
+  "traceability_passed": true,
+  "traceability_ref": "autodev/state/traceability/共通基盤_AppDatabase.json",
+  "persona_test_ref": 1,
+  "result": "completed"
+}

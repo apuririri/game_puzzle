@@ -1,0 +1,22 @@
+{
+  "schema_version": "5.2",
+  "target": "共通基盤_SaveLoadManager",
+  "scope": "feature",
+  "design_doc_ref": "docs/設計/features/共通基盤_SaveLoadManager.md",
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "GameSnapshot ↔ Room",
+      "layer": "data",
+      "category": "データモデル",
+      "design_doc_ref": {
+        "file": "docs/設計/features/共通基盤_SaveLoadManager.md",
+        "section": "機能概要"
+      },
+      "files": [
+        "app/src/main/java/com/example/myapp/game/save/SaveLoadManager.kt"
+      ],
+      "status": "completed"
+    }
+  ]
+}

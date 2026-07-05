@@ -1,0 +1,7 @@
+{
+  "generated_at": "2026-06-30T11:12:03+09:00",
+  "screens": [
+
+  ],
+  "unmatched_root_tags": ["character_select_root", "cpu_battle_root", "home_root", "mode_select_root", "ranking_root", "result_root", "save_slot_root", "score_attack_root", "settings_root", "story_root", "title_root", "tutorial_root"]
+}

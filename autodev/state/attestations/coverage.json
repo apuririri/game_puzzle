@@ -1,0 +1,92 @@
+{
+  "scope": "system",
+  "scanned_at": "2026-06-30T01:27:45Z",
+  "final_cycle": 3,
+  "cycles": [
+    {
+      "cycle": 1,
+      "scanned_at": "2026-06-30T01:26:29Z",
+      "uncovered_features": [
+        "タイトル / メインメニュー",
+        "エンドレスモード（プレイ画面）",
+        "スコアアタックモード（プレイ画面）",
+        "ストーリーモード（プレイ画面 + 会話パート）",
+        "CPU 対戦モード（プレイ画面）",
+        "連鎖演出システム（共通エンジン）",
+        "キャラクターボイス・BGM・SE 再生",
+        "大連鎖クリップ自動保存（5 連鎖以上）",
+        "ローカルランキング（TOP10）",
+        "セーブ／ロード（オート＋手動スロット）",
+        "リザルト / ゲームオーバー画面"
+      ],
+      "missing_subsections": [],
+      "unreferenced_designs": [],
+      "missing_testtag_candidates": [],
+      "passed": false
+    },
+    {
+      "cycle": 2,
+      "scanned_at": "2026-06-30T01:27:10Z",
+      "uncovered_features": [
+        "ストーリーモード（プレイ画面 + 会話パート）"
+      ],
+      "missing_subsections": [],
+      "unreferenced_designs": [],
+      "missing_testtag_candidates": [],
+      "passed": false
+    },
+    {
+      "cycle": 3,
+      "scanned_at": "2026-06-30T01:27:45Z",
+      "uncovered_features": [],
+      "missing_subsections": [],
+      "unreferenced_designs": [],
+      "missing_testtag_candidates": [],
+      "passed": true
+    }
+  ],
+  "inputs": [
+    "/home/yokota/project/game_puzzle/autodev/inputs/要件定義/要件定義書.md"
+  ],
+  "design_dir": "docs/設計",
+  "features": [
+    "共通基盤_AppDatabase",
+    "共通基盤_SettingsRepository",
+    "共通基盤_AssetSeeder",
+    "共通基盤_CharacterRepository",
+    "共通基盤_AudioManager",
+    "共通基盤_ChainEngine",
+    "共通基盤_ChainEffectRenderer",
+    "共通基盤_ChainClipRecorder",
+    "共通基盤_ScreenCapture",
+    "共通基盤_SaveLoadManager",
+    "設定",
+    "タイトル_メインメニュー",
+    "任意チュートリアル",
+    "キャラクター選択",
+    "ゲームモード選択",
+    "エンドレスモード",
+    "スコアアタックモード",
+    "CPU対戦モード",
+    "ストーリーモード",
+    "リザルト_ゲームオーバー",
+    "ローカルランキング",
+    "セーブ_ロード",
+    "スクリーンショット共有",
+    "大連鎖クリップ自動保存",
+    "連鎖演出システム",
+    "音声再生統合",
+    "タイトル / メインメニュー",
+    "エンドレスモード（プレイ画面）",
+    "スコアアタックモード（プレイ画面）",
+    "ストーリーモード（プレイ画面 + 会話パート）",
+    "CPU 対戦モード（プレイ画面）",
+    "連鎖演出システム（共通エンジン）",
+    "キャラクターボイス・BGM・SE 再生",
+    "大連鎖クリップ自動保存（5 連鎖以上）",
+    "ローカルランキング（TOP10）",
+    "セーブ／ロード（オート＋手動スロット）",
+    "リザルト / ゲームオーバー画面"
+  ],
+  "passed": true
+}

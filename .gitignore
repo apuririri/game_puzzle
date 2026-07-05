@@ -1,0 +1,66 @@
+# ===== AutoDev for Android .gitignore =====
+
+# --- Gradle / Android ビルド生成物 ---
+.gradle/
+**/build/
+local.properties
+captures/
+.cxx/
+*.apk.idsig
+
+# --- 署名・秘密情報（NFR-6.5.2） ---
+autodev/secrets/**/*
+!autodev/secrets/.gitkeep
+*.keystore
+*.jks
+.env
+.env.*
+
+# --- 署名済みAPK世代保管（生成物） ---
+autodev/artifacts/**/*
+!autodev/artifacts/.gitkeep
+
+# --- ログ・証跡（生成物。state は tracked） ---
+autodev/logs/**/*
+!autodev/logs/.gitkeep
+autodev/evidence/**/*
+!autodev/evidence/.gitkeep
+# critical evidence は tracked で永続化（リリース時は autodev/ ごと削除されるので顧客には漏れない）
+!autodev/evidence/_archived/
+!autodev/evidence/_archived/**
+
+# --- Maestro 実行生成物 ---
+.maestro/
+maestro/.maestro/
+
+# --- 状態の history は肥大化するので一部 ignore ---
+autodev/state/history/pre_compact_*.md
+
+# --- OS / エディタ ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# --- 洗い替えアーカイブ（生成物） ---
+autodev/archive/**/*
+!autodev/archive/.gitkeep
+
+# --- 稼働検知 heartbeat（揮発。current.json は tracked）---
+autodev/state/heartbeat.json
+autodev/state/.watchdog_restarts
+
+# --- Hook 失敗ログ（揮発。resolve_hook_failures.sh で解決マーク）---
+autodev/state/hook_failures.ndjson
+
+# --- 再開時の ground-truth 再検証結果（揮発）---
+autodev/state/resume_verifications/
+
+# --- Python キャッシュ（ハーネス補助の _conf.py 用） ---
+**/__pycache__/
+*.py[cod]
+maestro/lib/
+maestro/lib/*.jar
+.req_drafts/

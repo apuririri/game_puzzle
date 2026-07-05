@@ -1,0 +1,30 @@
+# ============================================================
+# 蓄積データのリテンション設定（autodev-cleanup / cleanup.sh が参照）
+# 「要約は永続（CHANGELOG / docs/変更履歴.md）・詳細はアーカイブ後に prune」が原則。
+# コード・設計書・進行中ループ・台帳・personas は対象外（絶対に触らない）。
+# ============================================================
+
+# 通常モード（cleanup.sh / cleanup.sh --apply）で prune する対象:
+evidence:
+  keep_days: 30        # 証跡（ADBスクショ / logcatダンプ）はこの日数より古いものをアーカイブ後削除
+logs:
+  keep_days: 30        # 日次ログはこの日数より古いものをアーカイブ後削除
+history:
+  keep_items: 30       # 進捗.md 履歴スナップショット(state/history)は直近N件を残す
+artifacts:
+  keep_items: 5        # 署名済み APK（autodev/artifacts/）は直近N世代を残す
+
+# full-reset モード（cleanup.sh --full-reset --apply）でのみ一掃する対象:
+#   - state/iterations / state/persona_tests
+#   - 解決済みの修正入力 inputs/修正対応/修正_*.md
+
+# アーカイブ出力先（autodev/archive/cleanup_<ts>.tar.gz）
+archive:
+  dir: autodev/archive
+
+# 永続化対象（案7）。機能/修正ループの attestation 完了時に archive_critical_evidence.sh が
+# evidence.screenshots / evidence.logcat を autodev/evidence/_archived/<target>/ にコピーする。
+# cleanup.sh は _archived/ 配下を prune 対象から除外する（無期限保持）。
+critical_evidence:
+  enabled: true
+  archived_dir: autodev/evidence/_archived

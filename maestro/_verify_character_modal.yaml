@@ -1,0 +1,25 @@
+appId: com.karakurai.prismalink
+name: verify_character_modal
+---
+- launchApp:
+    clearState: false
+- waitForAnimationToEnd
+- takeScreenshot:
+    path: autodev/evidence/_icon_check/00_title
+- tapOn:
+    id: "title_character_select_button"
+- waitForAnimationToEnd
+- takeScreenshot:
+    path: autodev/evidence/_icon_check/01_char_select_preview
+# タップして拡大モーダル (preview 画像領域)
+- tapOn:
+    id: "character_preview_image"
+- waitForAnimationToEnd
+- takeScreenshot:
+    path: autodev/evidence/_icon_check/02_char_modal_open
+# モーダル閉じる (背景タップ)
+- tapOn:
+    point: "10%,10%"
+- waitForAnimationToEnd
+- takeScreenshot:
+    path: autodev/evidence/_icon_check/03_char_modal_closed

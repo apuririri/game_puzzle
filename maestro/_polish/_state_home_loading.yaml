@@ -1,0 +1,11 @@
+# UI 改善 動的状態 発火: home loading（S11 雛形）
+# 目的: ホーム画面の loading 状態（スケルトン / スピナー）を画面に出すこと。
+# スクショ取得は capture_all_screens.sh が adb screencap で行うため、この flow は撮影しない。
+# 通信を遅延させる方法はアプリ側の debug 注入機能や run_adb.sh shell svc 等で差し替える。
+appId: com.karakurai.prismalink
+---
+- launchApp:
+    clearState: true     # 初回起動 → 通信完了前を狙う
+- assertVisible:
+    id: "home_loading"
+    optional: true

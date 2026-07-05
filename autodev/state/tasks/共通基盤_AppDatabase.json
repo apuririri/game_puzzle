@@ -1,0 +1,74 @@
+{
+  "schema_version": "5.2",
+  "target": "共通基盤_AppDatabase",
+  "scope": "feature",
+  "design_doc_ref": "docs/設計/features/共通基盤_AppDatabase.md",
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "Room Entity 6 種を新規追加（要件 §5）",
+      "layer": "data",
+      "category": "データモデル",
+      "design_doc_ref": {
+        "file": "docs/設計/features/共通基盤_AppDatabase.md",
+        "section": "データモデル"
+      },
+      "files": [
+        "app/src/main/java/com/example/myapp/data/local/entity/CharacterEntity.kt",
+        "app/src/main/java/com/example/myapp/data/local/entity/CharacterImageEntity.kt",
+        "app/src/main/java/com/example/myapp/data/local/entity/HighScoreEntity.kt",
+        "app/src/main/java/com/example/myapp/data/local/entity/StoryProgressEntity.kt",
+        "app/src/main/java/com/example/myapp/data/local/entity/SaveSlotEntity.kt",
+        "app/src/main/java/com/example/myapp/data/local/entity/AutoSaveEntity.kt"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "T2",
+      "title": "Dao 5 種を新規追加",
+      "layer": "data",
+      "category": "データモデル",
+      "design_doc_ref": {
+        "file": "docs/設計/features/共通基盤_AppDatabase.md",
+        "section": "データモデル"
+      },
+      "files": [
+        "app/src/main/java/com/example/myapp/data/local/dao/CharacterDao.kt",
+        "app/src/main/java/com/example/myapp/data/local/dao/HighScoreDao.kt",
+        "app/src/main/java/com/example/myapp/data/local/dao/StoryProgressDao.kt",
+        "app/src/main/java/com/example/myapp/data/local/dao/SaveSlotDao.kt",
+        "app/src/main/java/com/example/myapp/data/local/dao/AutoSaveDao.kt"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "T3",
+      "title": "AppDatabase v1 で全 7 Entity（雛形 Memo 含む）を統合、exportSchema 出力",
+      "layer": "data",
+      "category": "データモデル",
+      "design_doc_ref": {
+        "file": "docs/設計/features/共通基盤_AppDatabase.md",
+        "section": "受け入れ条件"
+      },
+      "files": [
+        "app/src/main/java/com/example/myapp/data/local/AppDatabase.kt",
+        "app/schemas/com.example.myapp.data.local.AppDatabase/1.json"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "T4",
+      "title": "androidTest（AppDatabaseTest）6 件追加 → 受け入れ条件検証",
+      "layer": "androidTest",
+      "category": "受け入れ条件",
+      "design_doc_ref": {
+        "file": "docs/設計/features/共通基盤_AppDatabase.md",
+        "section": "受け入れ条件"
+      },
+      "files": [
+        "app/src/androidTest/java/com/example/myapp/data/local/AppDatabaseTest.kt"
+      ],
+      "status": "completed"
+    }
+  ]
+}

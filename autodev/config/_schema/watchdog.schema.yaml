@@ -1,0 +1,32 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+title: AutoDev watchdog.yaml
+type: object
+additionalProperties: false
+required:
+  - enabled
+  - interval_min
+  - stale_min
+  - tmux_session
+  - max_restarts_per_hour
+  - resume_prompt
+properties:
+  enabled:
+    type: boolean
+  interval_min:
+    type: integer
+    minimum: 1
+    maximum: 60
+  stale_min:
+    type: integer
+    minimum: 1
+    maximum: 1440
+  tmux_session:
+    type: string
+    minLength: 1
+  max_restarts_per_hour:
+    type: integer
+    minimum: 1
+    maximum: 60
+  resume_prompt:
+    type: string
+    minLength: 1

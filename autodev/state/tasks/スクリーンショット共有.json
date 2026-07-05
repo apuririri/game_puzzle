@@ -1,0 +1,55 @@
+{
+  "schema_version": "5.2",
+  "target": "スクリーンショット共有",
+  "scope": "feature",
+  "design_doc_ref": "docs/設計/features/スクリーンショット共有.md",
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "FileProvider 経由 ACTION_SEND",
+      "layer": "sharing",
+      "category": "画面要素",
+      "design_doc_ref": {
+        "file": "docs/設計/features/スクリーンショット共有.要素",
+        "section": "d#画面要素"
+      },
+      "files": [
+        "app/src/main/java/com/example/myapp/sharing/ScreenCapture.kt",
+        "app/src/main/AndroidManifest.xml",
+        "app/src/main/res/xml/file_paths.xml"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "T2",
+      "title": "FileProvider 経由 ACTION_SEND - ユーザー操作 & エラーケース",
+      "layer": "sharing",
+      "category": "ユーザー操作",
+      "design_doc_ref": {
+        "file": "docs/設計/features/スクリーンショット共有.操作",
+        "section": "d#ユーザー操作"
+      },
+      "files": [
+        "app/src/main/java/com/example/myapp/sharing/ScreenCapture.kt",
+        "app/src/main/AndroidManifest.xml",
+        "app/src/main/res/xml/file_paths.xml"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "T3",
+      "title": "FileProvider 経由 ACTION_SEND - 受け入れ条件 (Maestro smoke + 起動)",
+      "layer": "sharing_test",
+      "category": "受け入れ条件",
+      "design_doc_ref": {
+        "file": "docs/設計/features/スクリーンショット共有.条件",
+        "section": "d#受け入れ条件"
+      },
+      "files": [
+        "maestro/smoke_title.yaml",
+        "autodev/evidence/screenshots/ui_phase1/title.png"
+      ],
+      "status": "completed"
+    }
+  ]
+}

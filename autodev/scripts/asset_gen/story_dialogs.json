@@ -1,0 +1,135 @@
+{
+  "_comment": "StoryDialogs.kt と同期して保持。追加/変更時は両方を更新すること。variant はキャラ立ち絵切替用（音声には voice_style で反映）。",
+  "hina": {
+    "chapters": [
+      [
+        {"text": "こんにちは！　私、ひなだよ♪", "variant": "JOY"},
+        {"text": "今日から一緒にパズルの世界を旅しよう！", "variant": "NORMAL"},
+        {"text": "私、パズルはあんまり得意じゃないんだ…", "variant": "SAD"},
+        {"text": "でも、あなたと一緒なら頑張れる気がする！", "variant": "WINK"},
+        {"text": "よーし、まずはウォームアップから！", "variant": "CHAIN"}
+      ],
+      [
+        {"text": "うぅ…連鎖が難しいよぉ…", "variant": "SAD"},
+        {"text": "でも、諦めない！　何度でも挑戦する！", "variant": "ANGER"},
+        {"text": "きっと私にもできるはず…！", "variant": "THINKING"},
+        {"text": "見て見て、大連鎖の予感！", "variant": "CHAIN"}
+      ],
+      [
+        {"text": "ここまで来た…！", "variant": "NORMAL"},
+        {"text": "みんなの気持ちを背負って戦う！", "variant": "ANGER"},
+        {"text": "ハートエクスプロージョン、いくよ！", "variant": "BIG_CHAIN"},
+        {"text": "…そして、伝説へ！", "variant": "VICTORY"}
+      ]
+    ]
+  },
+  "airi": {
+    "chapters": [
+      [
+        {"text": "やあ！　あいりだよ、よろしくねっ！", "variant": "JOY"},
+        {"text": "パズルは得意なんだ、まかせて！", "variant": "WINK"},
+        {"text": "リーフストームで一気に片付けちゃう！", "variant": "CHAIN"},
+        {"text": "さぁ、行くよ、勝負！", "variant": "ANGER"}
+      ],
+      [
+        {"text": "ん〜、思ったより難しいな…", "variant": "THINKING"},
+        {"text": "でも、パパッと解いちゃう！", "variant": "JOY"},
+        {"text": "リーフストーム、フル発動！", "variant": "CHAIN"},
+        {"text": "見た？　私の実力！", "variant": "WINK"}
+      ],
+      [
+        {"text": "決戦の時、来たね！", "variant": "ANGER"},
+        {"text": "全部消し飛ばしちゃえ！", "variant": "BIG_CHAIN"},
+        {"text": "はいっ、勝ちー！！", "variant": "VICTORY"}
+      ]
+    ]
+  },
+  "yuki": {
+    "chapters": [
+      [
+        {"text": "…どうも、ゆきです。よろしく。", "variant": "NORMAL"},
+        {"text": "静かに戦うのが好きなの。", "variant": "THINKING"},
+        {"text": "…でも、勝負となれば別。", "variant": "ANGER"},
+        {"text": "アイスフリーズ、発動。", "variant": "CHAIN"}
+      ],
+      [
+        {"text": "…集中。", "variant": "THINKING"},
+        {"text": "おじゃまぷよは私の敵じゃない。", "variant": "ANGER"},
+        {"text": "全部凍らせて…", "variant": "CHAIN"},
+        {"text": "…粉々にする。", "variant": "BIG_CHAIN"}
+      ],
+      [
+        {"text": "…最終決戦。", "variant": "NORMAL"},
+        {"text": "…冷徹に、勝つ。", "variant": "ANGER"},
+        {"text": "アイスフリーズ・オーバードライブ！", "variant": "BIG_CHAIN"},
+        {"text": "…勝った。", "variant": "VICTORY"}
+      ]
+    ]
+  },
+  "mio": {
+    "chapters": [
+      [
+        {"text": "ふふ…みおよ、よろしく。", "variant": "WINK"},
+        {"text": "魔法と連鎖、どちらも私の得意分野。", "variant": "THINKING"},
+        {"text": "月の光で全てを照らしてあげる。", "variant": "CHAIN"},
+        {"text": "さぁ、始めましょうか。", "variant": "NORMAL"}
+      ],
+      [
+        {"text": "…この程度で私に勝てると？", "variant": "ANGER"},
+        {"text": "月の魔力を、見せてあげる。", "variant": "CHAIN"},
+        {"text": "ムーンライトブレス、発動！", "variant": "BIG_CHAIN"},
+        {"text": "紫と赤、一気に消えて。", "variant": "WINK"}
+      ],
+      [
+        {"text": "運命の時、来ましたね。", "variant": "NORMAL"},
+        {"text": "全ての魔力を解き放つ…！", "variant": "BIG_CHAIN"},
+        {"text": "満月の光あれ！", "variant": "VICTORY"}
+      ]
+    ]
+  },
+  "rin": {
+    "chapters": [
+      [
+        {"text": "よっ、りんだ！　よろしく頼むぜ！", "variant": "JOY"},
+        {"text": "走るのもパズルも、どっちも得意さ！", "variant": "WINK"},
+        {"text": "行くぞ、一気に決めるぜ！", "variant": "ANGER"},
+        {"text": "ライトニングブレイクだーっ！", "variant": "CHAIN"}
+      ],
+      [
+        {"text": "うぉぉ、負けねぇ！", "variant": "ANGER"},
+        {"text": "スピードなら誰にも負けない！", "variant": "CHAIN"},
+        {"text": "ライトニング、フルパワー！", "variant": "BIG_CHAIN"},
+        {"text": "どうだ、私の走りは！", "variant": "WINK"}
+      ],
+      [
+        {"text": "決戦だ、燃えるぜ…！", "variant": "ANGER"},
+        {"text": "全力全開、限界突破！", "variant": "BIG_CHAIN"},
+        {"text": "頂点、取ったぜっ！", "variant": "VICTORY"}
+      ]
+    ]
+  },
+  "apuririri": {
+    "chapters": [
+      [
+        {"text": "ハロー☆　あーしのこと、あぷりりりって呼んで♡", "variant": "JOY"},
+        {"text": "パズルとか超久しぶり〜、まじガチ楽しみっ！", "variant": "WINK"},
+        {"text": "え、なに？　あーしってギャルに見える？　やば〜、正解！", "variant": "NORMAL"},
+        {"text": "見た目で舐めんなよ〜、あーし本気出したらガチだから♪", "variant": "THINKING"},
+        {"text": "よっしゃ、レッツプリズマ〜！", "variant": "CHAIN"}
+      ],
+      [
+        {"text": "うわマジ？　こんな連鎖ムズくない？", "variant": "SAD"},
+        {"text": "でもさ〜、あーし諦め悪いの♡", "variant": "ANGER"},
+        {"text": "ちょ、待って、閃いたかも！　テンアゲ！", "variant": "THINKING"},
+        {"text": "ギャルサンシャイン、いっちゃえ〜っ！", "variant": "CHAIN"},
+        {"text": "ほら見た？　あーしのポテンシャルってこんな感じ♪", "variant": "WINK"}
+      ],
+      [
+        {"text": "きたきたきた〜！　これぞ本番って感じ♡", "variant": "NORMAL"},
+        {"text": "ここで負けたらあーしのプリじゃないっつーの！", "variant": "ANGER"},
+        {"text": "ギャルサンシャイン・オーバーロード、ドーン！", "variant": "BIG_CHAIN"},
+        {"text": "ぶっちぎりで勝ちぃ〜！　あーし最強♡", "variant": "VICTORY"}
+      ]
+    ]
+  }
+}

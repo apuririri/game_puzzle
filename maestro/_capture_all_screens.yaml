@@ -1,0 +1,48 @@
+appId: com.karakurai.prismalink
+---
+- launchApp:
+    clearState: true
+- takeScreenshot: s11_title
+- tapOn:
+    id: "title_character_select_button"
+- takeScreenshot: s11_character_select
+- tapOn:
+    id: "character_confirm_button"
+- tapOn:
+    id: "title_settings_button"
+- takeScreenshot: s11_settings
+- tapOn:
+    id: "settings_back_button"
+- tapOn:
+    id: "title_tutorial_button"
+- takeScreenshot: s11_tutorial
+- tapOn:
+    id: "tutorial_skip_button"
+- tapOn:
+    id: "title_ranking_button"
+- takeScreenshot: s11_ranking
+- tapOn:
+    id: "ranking_back_button"
+- tapOn:
+    id: "title_start_button"
+- takeScreenshot: s11_mode_select
+- tapOn:
+    id: "mode_endless_button"
+- takeScreenshot: s11_endless
+- tapOn:
+    id: "playfield_pause_button"
+- takeScreenshot: s11_endless_paused
+- tapOn:
+    id: "playfield_pause_button"
+- pressKey: Back
+- tapOn:
+    id: "mode_scoreattack_button"
+- takeScreenshot: s11_score_attack
+- pressKey: Back
+- tapOn:
+    id: "mode_story_button"
+- takeScreenshot: s11_story
+- pressKey: Back
+- tapOn:
+    id: "mode_cpu_button"
+- takeScreenshot: s11_cpu_battle

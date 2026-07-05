@@ -1,0 +1,29 @@
+# 機能横断シナリオ: ログイン → 主要動線 → ログアウト の連結（S10 IV3 雛形）
+# appId は loop.yaml::application_id と一致させること。
+# testTag は実装に合わせて差し替えてください。
+appId: com.karakurai.prismalink
+---
+- launchApp:
+    clearState: true   # クリーン install 想定。状態をリセット
+- assertVisible:
+    id: "login_root"
+- tapOn:
+    id: "login_email_input"
+- inputText: "user@example.com"
+- tapOn:
+    id: "login_password_input"
+- inputText: "password123"
+- tapOn:
+    id: "login_button"
+# 主要動線（実装に合わせて差し替え）
+- assertVisible:
+    id: "home_root"
+- takeScreenshot: autodev/evidence/_integration/screenshots/login_to_logout_home
+# ログアウト
+- tapOn:
+    id: "home_menu_button"
+- tapOn:
+    id: "menu_logout_button"
+- assertVisible:
+    id: "login_root"
+- takeScreenshot: autodev/evidence/_integration/screenshots/login_to_logout_done

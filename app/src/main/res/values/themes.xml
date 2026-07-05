@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Compose 専用アプリのため最小限のプラットフォームテーマ。実体は ui/theme/Theme.kt -->
+    <style name="Theme.MyApp" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>

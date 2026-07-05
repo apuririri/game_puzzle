@@ -1,0 +1,17 @@
+# 機能横断シナリオ: バックグラウンド退避 → 復帰（S10 IV3 雛形）
+# HOME キーで退避し、再前面化したときに状態が保持されることを確認。
+appId: com.karakurai.prismalink
+---
+- launchApp:
+    clearState: false
+- assertVisible:
+    id: "home_root"
+- takeScreenshot: autodev/evidence/_integration/screenshots/background_before
+- pressKey: "Home"
+- waitForAnimationToEnd:
+    timeout: 3000
+- launchApp:       # 同じアプリを再前面化
+    clearState: false
+- assertVisible:
+    id: "home_root"
+- takeScreenshot: autodev/evidence/_integration/screenshots/background_after

@@ -1,0 +1,51 @@
+{
+  "schema_version": "5.2",
+  "target": "リザルト_ゲームオーバー",
+  "scope": "feature",
+  "design_doc_ref": "docs/設計/features/リザルト_ゲームオーバー.md",
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "Result + TOP10 判定 + Share",
+      "layer": "ui",
+      "category": "画面要素",
+      "design_doc_ref": {
+        "file": "docs/設計/features/リザルト_ゲームオーバー.要素",
+        "section": "d#画面要素"
+      },
+      "files": [
+        "app/src/main/java/com/example/myapp/ui/screen/ResultScreen.kt"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "T2",
+      "title": "Result + TOP10 判定 + Share - ユーザー操作 & エラーケース",
+      "layer": "ui",
+      "category": "ユーザー操作",
+      "design_doc_ref": {
+        "file": "docs/設計/features/リザルト_ゲームオーバー.操作",
+        "section": "d#ユーザー操作"
+      },
+      "files": [
+        "app/src/main/java/com/example/myapp/ui/screen/ResultScreen.kt"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "T3",
+      "title": "Result + TOP10 判定 + Share - 受け入れ条件 (Maestro smoke + 起動)",
+      "layer": "ui_test",
+      "category": "受け入れ条件",
+      "design_doc_ref": {
+        "file": "docs/設計/features/リザルト_ゲームオーバー.条件",
+        "section": "d#受け入れ条件"
+      },
+      "files": [
+        "maestro/smoke_title.yaml",
+        "autodev/evidence/screenshots/ui_phase1/title.png"
+      ],
+      "status": "completed"
+    }
+  ]
+}

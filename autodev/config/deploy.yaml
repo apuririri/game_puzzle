@@ -1,0 +1,30 @@
+# ============================================================
+# デプロイ環境レジストリ（Android 版 / 修正方針 §3-6）
+# AI は「<source> から <target> へデプロイ」の指示で autodev-deploy skill を実行する。
+# デプロイ先は開発者のスマートフォン（ストア公開なし）。
+# ============================================================
+
+environments:
+  emulator:
+    role: dev
+    kind: avd                    # avd | adb-device
+    build_type: debug            # debug | release
+    requires_approval: false
+
+  device:
+    role: production             # 「本番」= 開発者の実機
+    kind: adb-device
+    serial: ""                   # adb デバイスシリアル（空なら接続中の実機を自動選択。複数台は要指定）
+    build_type: release          # 独自 keystore で署名（autodev/secrets/）
+    requires_approval: true      # 実機反映は明示承認必須（絶対規約7）
+
+# 許可する source -> target
+promotions:
+  - { from: emulator, to: device }
+
+defaults:
+  build_strategy: rebuild        # rebuild | promote（promote = 前回ビルド成果物 APK を再利用）
+  require_smoke: true            # デプロイ後に maestro/smoke.yaml + logcat クラッシュスキャン
+  boot_timeout_sec: 180
+  auto_rollback: true            # スモーク失敗時に前世代 APK へ復帰（データ消失を伴う場合は承認必須）
+  artifact_keep: 5               # autodev/artifacts/ に保管する署名済み APK の世代数

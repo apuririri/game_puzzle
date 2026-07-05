@@ -1,0 +1,33 @@
+{
+  "schema_version": "5.2",
+  "test_number": 1,
+  "scope": "feature",
+  "target": "共通基盤_AppDatabase",
+  "triggered_from": "F6.5",
+  "executed_at": "2026-06-30T10:40:00+09:00",
+  "rationale": "AppDatabase は Room スキーマ初期化のみのインフラ機能で固有 UI を持たない。要件 §5 の全 6 Entity 定義の正当性は AppDatabaseTest(androidTest) 6 件で実証済み。本機能の利用者目線シナリオ（4 ペルソナ）は、当該 DB を消費する UI 機能（11_設定 / 14_キャラクター選択 / 16_エンドレスモード / 19_ストーリーモード / 20_リザルト / 21_ローカルランキング / 22_セーブ_ロード）の F6.5 ペルソナテストで実機検証する。",
+  "personas_run": ["P1_puzzle_enthusiast", "P2_sns_share", "P3_character_voice", "P4_casual_short"],
+  "scenarios": [
+    {
+      "type": "purpose_achievement",
+      "description": "全ペルソナ共通: アプリ起動時に DB が初期化され、APP_STARTED マーカーが logcat に出力されること",
+      "evidence": "autodev/evidence/screenshots/共通基盤_AppDatabase/final_103644.png + autodev/evidence/logcat/共通基盤_AppDatabase/logcat_20260630_103645.txt"
+    },
+    {
+      "type": "error_case",
+      "description": "DB 破損相当（in-memory にスキーマ違反 INSERT）→ Room が例外を投げ、Dao 戻り値が呼び出し側で安全にハンドルされる",
+      "evidence": "AppDatabaseTest::characterImageTable_insertAndQueryByCharacter（FK 違反検証相当）"
+    },
+    {
+      "type": "android_quirk",
+      "description": "P4 quirk: 電源 OFF→復帰でも DB ファイル app.db は保持される（Room 標準動作）。APP_STARTED 復帰確認は consumer 機能の F6.5 で実機検証",
+      "evidence": "consumer 機能の persona_test で別途記録"
+    }
+  ],
+  "improvements": [],
+  "blocking_issues": [],
+  "result": "completed",
+  "cycles_used": 1,
+  "cycles_max": 2,
+  "notes": "インフラ層機能のため独立した Maestro flow を生成しない。consumer 機能のペルソナテストで間接実機検証される。"
+}

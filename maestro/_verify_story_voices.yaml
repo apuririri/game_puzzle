@@ -1,0 +1,25 @@
+appId: com.karakurai.prismalink
+name: verify_story_voices
+---
+- launchApp:
+    clearState: true
+- waitForAnimationToEnd
+# Story ボイスは各台詞ごとに個別 ogg が再生されるべき
+- tapOn:
+    id: "title_start_button"
+- waitForAnimationToEnd
+- tapOn:
+    id: "mode_story_button"
+- waitForAnimationToEnd
+- takeScreenshot:
+    path: autodev/evidence/_story_voices/01_line0
+- tapOn:
+    id: "story_next_button"
+- waitForAnimationToEnd
+- takeScreenshot:
+    path: autodev/evidence/_story_voices/02_line1
+- tapOn:
+    id: "story_next_button"
+- waitForAnimationToEnd
+- takeScreenshot:
+    path: autodev/evidence/_story_voices/03_line2

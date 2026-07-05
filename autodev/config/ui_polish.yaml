@@ -1,0 +1,59 @@
+# ============================================================
+# UIデザイン改善（S11）設定 / FR-5.18
+# autodev-ui-polish skill が参照する。
+# ============================================================
+
+# UP2 スクショ取得の HEADFUL 強制。
+require_headful: true
+
+# UP3 評価軸（必須セクション）。AI は全画面の <screen>.json::issues[] で
+# 各 criterion について「評価」「改善案 or 問題なし判定」を必ず出力する。
+# check_ui_design.sh はこれらのキー欠落を fail させる。
+criteria:
+  - id: visibility
+    name: 視認性
+    description: コントラスト / フォントサイズ / 余白 / 文字数の収まり
+  - id: layout
+    name: レイアウト
+    description: 要素配置 / 整合性 / Material 3 ガイドライン / グリッド
+  - id: consistency
+    name: 一貫性
+    description: 全体設計書 §共通スタイル との整合 / 他画面とのコンポーネント揃え
+  - id: usability
+    name: 操作性
+    description: タップ領域 48dp 以上 / アフォーダンス / 主要動線の最短化
+  - id: dynamic_state
+    name: 動的表示
+    description: 遷移アニメ / スケルトン / ローディング・空状態・エラー状態の明示
+  - id: material3
+    name: Material 3 適合
+    description: コンポーネント・配色トークン・elevation の Material 3 採用
+  - id: spacing
+    name: 余白・密度
+    description: 8dp グリッド / セーフエリア / 端末サイズ別の余白
+  - id: a11y
+    name: アクセシビリティ
+    description: contentDescription / 色のみで情報を伝えない / 動的フォントサイズ対応
+
+# 動的状態の撮影必須（loading / empty / error）。発火困難な画面は dynamic_state_optional に登録した
+# 場合に限り省略可（通常スクショ before/after は必須）。
+dynamic_states:
+  - loading
+  - empty
+  - error
+
+dynamic_state_optional: []
+  # - splash      # スプラッシュ画面は loading 概念がない等
+  # - settings
+
+# UP6 after スクショ取得の再走上限（同一画面）。
+max_capture_retry: 3
+
+# 証跡保存先（プロジェクトルート相対）。
+evidence_dir: "autodev/evidence/ui_polish"
+
+# 棚卸し state 保存先。
+inventory_path: "autodev/state/ui_polish/inventory.json"
+
+# UP2 / UP6 1画面あたりのタイムアウト（秒）。
+timeout_sec_per_screen: 120

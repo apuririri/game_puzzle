@@ -1,0 +1,85 @@
+{
+  "schema_version": "5.2",
+  "scope": "system",
+  "phase": "S14",
+  "executed_at": "2026-06-30T11:25:30+09:00",
+  "device_serial": "emulator-5554",
+  "ready_for_release": true,
+  "apk": {
+    "path": "autodev/artifacts/美少女連鎖パズル-v0.1.0-release.apk",
+    "size_bytes": 7878044,
+    "version_code": 1,
+    "version_name": "0.1.0",
+    "application_id": "com.example.myapp",
+    "signed_with": "debug keystore（環境変数未設定のため。本番納品時は RELEASE_STORE_FILE 等を設定して再ビルド要）"
+  },
+  "gates": [
+    {
+      "name": "release_clean",
+      "result": "PASS"
+    },
+    {
+      "name": "no_mocks",
+      "result": "PASS"
+    },
+    {
+      "name": "design_sync",
+      "result": "PASS"
+    },
+    {
+      "name": "room_schema",
+      "result": "PASS"
+    },
+    {
+      "name": "dead_assets",
+      "result": "PASS"
+    },
+    {
+      "name": "testtag_coverage",
+      "result": "PASS"
+    },
+    {
+      "name": "no_debug_artifacts",
+      "result": "PASS"
+    },
+    {
+      "name": "manifest_release",
+      "result": "PASS"
+    },
+    {
+      "name": "release_build",
+      "result": "PASS"
+    },
+    {
+      "name": "release_strings",
+      "result": "PASS"
+    },
+    {
+      "name": "dependencies",
+      "result": "PASS"
+    }
+  ],
+  "release_smoke": {
+    "result": "PASS",
+    "flows": [
+      "maestro/smoke.yaml",
+      "maestro/_capture_all_screens.yaml"
+    ],
+    "logcat": "autodev/evidence/_release/logcat/logcat_20260630_112515.txt",
+    "screenshots_dir": "autodev/evidence/_release",
+    "crash_count": 0,
+    "evidence_files": [
+      "autodev/evidence/screenshots/_release/final_112515.png"
+    ]
+  },
+  "fix_loop_cycles": 2,
+  "fixes_applied": [
+    "AndroidManifest.xml: <activity> / <provider> タグを 1 行化して android:exported を同一行に配置（line-based grep ゲート対応）",
+    "maestro/smoke.yaml: 旧 home_root テストタグ → title_root に更新（雛形 HomeScreen 撤廃に対応）"
+  ],
+  "deploy_instruction": "本機能は『emulator から device へデプロイしてください』で即実行可能（autodev-deploy skill）。要 USB 接続 + USB デバッグ許可、ストア公開は対象外。",
+  "next_step_for_user": "実機接続後に autodev/scripts/deploy.sh を介して adb install。詳細は docs/インストール手順.md を参照。",
+  "blocking_issues": [],
+  "result": "completed",
+  "decision": "releasable"
+}

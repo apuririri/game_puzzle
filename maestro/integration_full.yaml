@@ -1,0 +1,77 @@
+appId: com.karakurai.prismalink
+---
+- launchApp:
+    clearState: true
+- assertVisible:
+    id: "title_root"
+# キャラクター選択
+- tapOn:
+    id: "title_character_select_button"
+- assertVisible:
+    id: "character_select_root"
+- assertVisible:
+    id: "character_list"
+- tapOn:
+    id: "character_confirm_button"
+- assertVisible:
+    id: "title_root"
+# 設定
+- tapOn:
+    id: "title_settings_button"
+- assertVisible:
+    id: "settings_root"
+- assertVisible:
+    id: "settings_difficulty_select"
+- assertVisible:
+    id: "settings_bgm_toggle"
+- assertVisible:
+    id: "settings_se_toggle"
+- assertVisible:
+    id: "settings_voice_toggle"
+- assertVisible:
+    id: "settings_chain_clip_toggle"
+- tapOn:
+    id: "settings_back_button"
+# チュートリアル
+- tapOn:
+    id: "title_tutorial_button"
+- assertVisible:
+    id: "tutorial_root"
+- tapOn:
+    id: "tutorial_skip_button"
+- assertVisible:
+    id: "title_root"
+# ランキング
+- tapOn:
+    id: "title_ranking_button"
+- assertVisible:
+    id: "ranking_root"
+- assertVisible:
+    id: "ranking_tab_endless"
+- tapOn:
+    id: "ranking_back_button"
+- assertVisible:
+    id: "title_root"
+# ゲームモード → エンドレス
+- tapOn:
+    id: "title_start_button"
+- assertVisible:
+    id: "mode_select_root"
+- tapOn:
+    id: "mode_endless_button"
+- assertVisible:
+    id: "endless_root"
+- assertVisible:
+    id: "playfield_grid"
+- assertVisible:
+    id: "playfield_btn_left"
+- assertVisible:
+    id: "playfield_btn_right"
+- assertVisible:
+    id: "playfield_btn_rotate"
+- assertVisible:
+    id: "playfield_btn_softdrop"
+- assertVisible:
+    id: "playfield_btn_harddrop"
+- assertVisible:
+    id: "playfield_pause_button"

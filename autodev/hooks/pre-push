@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Git pre-push hook（9.6 / FR-5.16.7）。
+# プッシュ前にループのクローズゲートと skills 同期を機械確認する。
+# 状態が無い（雛形）場合はスキップして通す。
+set -uo pipefail
+ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+S="$ROOT/autodev/scripts"
+RC=0
+
+run() { echo "[pre-push] $1"; shift; "$@" || { echo "[pre-push] FAIL: $*" >&2; RC=1; }; }
+
+# skills 同期ずれ検出
+[ -x "$S/sync_claude_dir.sh" ] && run "skills 同期確認" "$S/sync_claude_dir.sh" --check
+
+# 進捗.md 同期
+[ -x "$S/check_progress_md_sync.sh" ] && run "進捗.md 同期確認" "$S/check_progress_md_sync.sh"
+
+# リリースクリーン（コード/設計のツール依存）
+[ -x "$S/check_release_clean.sh" ] && run "リリースクリーン確認" "$S/check_release_clean.sh"
+
+if [ "$RC" != "0" ]; then
+  echo "[pre-push] ゲート未通過のため push を中止しました。" >&2
+  echo "[pre-push] 緊急時は AUTODEV_DISABLE_HOOKS=1 ですが、HARNESS_NOTES.md に記録してください。" >&2
+fi
+exit "$RC"

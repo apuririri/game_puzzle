@@ -1,0 +1,13 @@
+appId: com.karakurai.prismalink
+---
+- launchApp:
+    clearState: false
+- tapOn:
+    id: "title_start_button"
+- tapOn:
+    id: "mode_endless_button"
+- waitForAnimationToEnd
+- takeScreenshot: endless_initial
+- waitForAnimationToEnd:
+    timeout: 1500
+- takeScreenshot: endless_after_1500ms

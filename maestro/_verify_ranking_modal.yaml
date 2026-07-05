@@ -1,0 +1,11 @@
+appId: com.karakurai.prismalink
+name: verify_ranking_modal
+---
+- launchApp:
+    clearState: false
+- waitForAnimationToEnd
+- tapOn:
+    id: "title_ranking_button"
+- waitForAnimationToEnd
+- takeScreenshot:
+    path: autodev/evidence/_icon_check/10_ranking_top

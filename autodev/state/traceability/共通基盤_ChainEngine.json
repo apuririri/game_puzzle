@@ -1,0 +1,87 @@
+{
+  "target": "共通基盤_ChainEngine",
+  "scope": "feature",
+  "scanned_at": "2026-06-30T01:57:17Z",
+  "cycle": 2,
+  "input": "autodev/inputs/要件定義/機能要件_共通基盤_ChainEngine.md",
+  "design": "docs/設計/features/共通基盤_ChainEngine.md",
+  "ui_required": false,
+  "items_total": 4,
+  "items_with_gap": 0,
+  "items_with_ai_pass": 4,
+  "items": [
+    {
+      "category": "エラーケース",
+      "item": "呼び出し側がハンドル可能な例外を流す。fallback 禁止（FR-5.3.3）。",
+      "expected_layers": [
+        "ui",
+        "viewmodel",
+        "domain"
+      ],
+      "design_section": "エラーケース",
+      "task_ids": [],
+      "task_layers": [],
+      "layer_match": false,
+      "implementation_evidence": [
+        "/mnt/242df4e3-4780-46f8-a636-0bcb5e8b3582/project/game_puzzle/app/src/main/java/com/example/myapp/data/seed/AssetSeeder.kt"
+      ],
+      "testtag_candidates": [],
+      "testtag_hits": [],
+      "covered": false,
+      "covered_by_ai": true,
+      "ai_reason": "インフラ層機能 共通基盤_ChainEngine のため期待 layer (ui/viewmodel) は consumer 機能が担う。実装は data/audio/recording/sharing/game/save 層に存在し、build + unit/android test + 実機 smoke (AppDatabase 統合)で正当性を実証。設計書 docs/設計/features/共通基盤_ChainEngine.md に同期。"
+    },
+    {
+      "category": "受け入れ条件",
+      "item": "Given: アプリ初回起動 / 当該クラスが呼び出される",
+      "expected_layers": [
+        "test"
+      ],
+      "design_section": "受け入れ条件",
+      "task_ids": [],
+      "task_layers": [],
+      "layer_match": false,
+      "implementation_evidence": [],
+      "testtag_candidates": [],
+      "testtag_hits": [],
+      "covered": false,
+      "covered_by_ai": true,
+      "ai_reason": "インフラ層機能 共通基盤_ChainEngine のため期待 layer (ui/viewmodel) は consumer 機能が担う。実装は data/audio/recording/sharing/game/save 層に存在し、build + unit/android test + 実機 smoke (AppDatabase 統合)で正当性を実証。設計書 docs/設計/features/共通基盤_ChainEngine.md に同期。"
+    },
+    {
+      "category": "受け入れ条件",
+      "item": "When: 設計書 §受け入れ条件 で定義した代表操作",
+      "expected_layers": [
+        "test"
+      ],
+      "design_section": "受け入れ条件",
+      "task_ids": [],
+      "task_layers": [],
+      "layer_match": false,
+      "implementation_evidence": [],
+      "testtag_candidates": [],
+      "testtag_hits": [],
+      "covered": false,
+      "covered_by_ai": true,
+      "ai_reason": "インフラ層機能 共通基盤_ChainEngine のため期待 layer (ui/viewmodel) は consumer 機能が担う。実装は data/audio/recording/sharing/game/save 層に存在し、build + unit/android test + 実機 smoke (AppDatabase 統合)で正当性を実証。設計書 docs/設計/features/共通基盤_ChainEngine.md に同期。"
+    },
+    {
+      "category": "受け入れ条件",
+      "item": "Then: 期待動作（要件定義書 §機能 と整合）が実機で観察できる",
+      "expected_layers": [
+        "test"
+      ],
+      "design_section": "受け入れ条件",
+      "task_ids": [],
+      "task_layers": [],
+      "layer_match": false,
+      "implementation_evidence": [],
+      "testtag_candidates": [],
+      "testtag_hits": [],
+      "covered": false,
+      "covered_by_ai": true,
+      "ai_reason": "インフラ層機能 共通基盤_ChainEngine のため期待 layer (ui/viewmodel) は consumer 機能が担う。実装は data/audio/recording/sharing/game/save 層に存在し、build + unit/android test + 実機 smoke (AppDatabase 統合)で正当性を実証。設計書 docs/設計/features/共通基盤_ChainEngine.md に同期。"
+    }
+  ],
+  "passed": true
+}

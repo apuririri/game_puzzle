@@ -1,0 +1,52 @@
+# ============================================================
+# 全体結合確認・改善（S10）設定 / FR-5.17
+# autodev-integration-verify skill が参照する。
+# ============================================================
+
+# IV3 → IV5 の再走上限（無限ループ防止）。超過時は blocking_issues に転記して blocked。
+max_integration_cycles: 3
+
+# IV3 の HEADFUL 強制。false にすると headless でも可（既定 true: HEADFUL=1 を強制）。
+require_headful: true
+
+# IV3 で実行する機能横断シナリオ（maestro/_integration/ 配下）。
+# 既定では _integration/*.yaml を全実行する。並び順は依存関係順にしたい場合のみ列挙。
+cross_feature_flows: []
+  # - login_to_logout.yaml
+  # - kill_restart_state.yaml
+  # - offline_recovery.yaml
+  # - background_restore.yaml
+  # - rotation.yaml
+  # - permission_denied.yaml
+
+# IV1 モック/スタブ/TODO 検出: 走査対象（app/src/main/）。
+mock_scan:
+  include_dirs:
+    - app/src/main
+  # 走査除外（テストコード / 自動生成 / リソース）。
+  exclude_dirs:
+    - app/src/test
+    - app/src/androidTest
+    - app/build
+    - app/src/main/res
+  # 検出パターン（正規表現 ERE）。クラス名・関数名・コメントで検出する。
+  patterns:
+    - '\b(Mock|Fake|Stub|Dummy)[A-Z][A-Za-z0-9_]*\b'
+    - '\bFAKE_|\bSTUB_|\bDUMMY_'
+    - '//\s*(TODO|FIXME|XXX|HACK)\b'
+    - '/\*\s*(TODO|FIXME|XXX|HACK)\b'
+  # 検出許容: 正規表現で1つでもマッチした行は無視する。
+  # （MockWebServer 等テスト用ライブラリ参照、コメント中の通常 TODO、フレームワーク命名衝突など）
+  allowlist:
+    - 'MockWebServer'           # OkHttp テスト用（プロダクションコードから参照される場合は要注意）
+    - 'androidx\.fragment\.app\.testing\.FragmentScenario'
+    # 個別の正当な例外はここに追記する。
+
+# IV4 利用目的視点評価で再利用するペルソナテストの trigger 名。
+persona_trigger: "integration"
+
+# IV3 実行時のタイムアウト（秒）。
+timeout_sec: 1800
+
+# 証跡保存先（プロジェクトルート相対）。
+evidence_dir: "autodev/evidence/_integration"

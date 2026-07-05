@@ -1,0 +1,178 @@
+{
+  "characters": [
+    {
+      "id": "hina",
+      "displayName": "ひな",
+      "voicevox_speaker_id": 2,
+      "voicevox_speaker_name": "四国めたん ノーマル",
+      "voiceTone": "spk_01",
+      "appearance": "1girl, solo, anime, beautiful detailed eyes, soft pink twin tails hair, blue eyes, white school uniform with pink ribbon, cute, kind smile, cheerful, magical girl theme",
+      "negative_extra": "boy, masculine, ugly, lowres, blurry, bad anatomy, bad hands, extra digits",
+      "color_accent": "#FFC0CB"
+    },
+    {
+      "id": "airi",
+      "displayName": "あいり",
+      "voicevox_speaker_id": 3,
+      "voicevox_speaker_name": "ずんだもん ノーマル",
+      "voiceTone": "spk_02",
+      "appearance": "1girl, solo, anime, beautiful detailed eyes, long lime green hair with braids, green eyes, casual hoodie outfit, energetic, playful expression, school setting",
+      "negative_extra": "boy, masculine, ugly, lowres, blurry, bad anatomy, bad hands, extra digits",
+      "color_accent": "#7FFF00"
+    },
+    {
+      "id": "yuki",
+      "displayName": "ゆき",
+      "voicevox_speaker_id": 8,
+      "voicevox_speaker_name": "春日部つむぎ",
+      "voiceTone": "spk_03",
+      "appearance": "1girl, solo, anime, beautiful detailed eyes, short silver-white bobbed hair, light blue eyes, winter sweater with snowflake patterns, gentle quiet expression, calm mature",
+      "negative_extra": "boy, masculine, ugly, lowres, blurry, bad anatomy, bad hands, extra digits",
+      "color_accent": "#E0FFFF"
+    },
+    {
+      "id": "mio",
+      "displayName": "みお",
+      "voicevox_speaker_id": 10,
+      "voicevox_speaker_name": "雨晴はう",
+      "voiceTone": "spk_04",
+      "appearance": "1girl, solo, anime, beautiful detailed eyes, wavy purple long hair, purple eyes, mystical gothic dress with stars, dreamy mysterious aura, witch theme",
+      "negative_extra": "boy, masculine, ugly, lowres, blurry, bad anatomy, bad hands, extra digits",
+      "color_accent": "#8A2BE2"
+    },
+    {
+      "id": "rin",
+      "displayName": "りん",
+      "voicevox_speaker_id": 9,
+      "voicevox_speaker_name": "波音リツ",
+      "voiceTone": "spk_05",
+      "appearance": "1girl, solo, anime, beautiful detailed eyes, ponytail black hair with red ribbon, red eyes, athletic tracksuit, confident strong pose, sporty tomboy",
+      "negative_extra": "boy, masculine, ugly, lowres, blurry, bad anatomy, bad hands, extra digits",
+      "color_accent": "#DC143C"
+    },
+    {
+      "id": "apuririri",
+      "displayName": "あぷりりり",
+      "voicevox_speaker_id": 8,
+      "voicevox_speaker_name": "春日部つむぎ",
+      "voiceTone": "spk_06",
+      "appearance": "1girl, solo, anime, beautiful detailed eyes, long peach-orange twin tail hair with green ribbons, bright green eyes, black cardigan school uniform with green stripe tie, dark red plaid pleated micro miniskirt, black knee-high socks, brown loafers, 18 years old japanese high school girl, cheerful gyaru, big playful smile, energetic pose, gal fashion, gyaru aesthetic",
+      "negative_extra": "boy, masculine, ugly, lowres, blurry, bad anatomy, bad hands, extra digits, child, elementary school, glasses",
+      "color_accent": "#FF8C42",
+      "voice_lines_override": {
+        "select_preview": "はろ〜☆　あーし、あぷりりり！　よろよろ〜♪",
+        "chain_1":        "いっけぇ！",
+        "chain_1_alt1":   "はい、ぱっ！",
+        "chain_1_alt2":   "うぇい！",
+        "chain_2":        "にれんさ〜、余裕っしょ！",
+        "chain_2_alt1":   "まだいくよっ、続くってばぁ！",
+        "chain_2_alt2":   "うふふ、あーし止まんな〜い♡",
+        "chain_big":      "だ・い・れ・ん・さぁ〜〜っ！　テンアゲ！",
+        "chain_big_alt1": "ちょ〜、なにこれ！　あーしガチ天才かも？！",
+        "chain_big_alt2": "きゃぴぃ〜！　派手にキメちゃお♡",
+        "skill":          "ギャル、サンシャイィィン！",
+        "skill_alt1":     "見せたげる、あーしの本気ってやつ！",
+        "win":            "勝ちぃ〜っ！　あーし最強♡",
+        "win_alt1":       "ちょろすぎ〜、まじガチ余裕っ！",
+        "lose":           "うそでしょ〜っ、負けちった……。",
+        "lose_alt1":      "つ、次はぜっったい勝つし！",
+        "idle":           "ねぇねぇ、次なにやる？",
+        "idle_alt1":      "はやくやろ〜？　あーし退屈っ！",
+        "idle_alt2":      "ぼーっとしてないで、遊ぼ〜♪"
+      }
+    }
+  ],
+  "variants": [
+    {
+      "name": "normal",
+      "prompt_modifier": "neutral expression, looking at viewer, standing pose, full body, simple background",
+      "seed_offset": 0
+    },
+    {
+      "name": "joy",
+      "prompt_modifier": "happy smile, eyes closed, joyful expression, peace sign, sparkles, full body, simple bright background",
+      "seed_offset": 1
+    },
+    {
+      "name": "anger",
+      "prompt_modifier": "angry expression, eyebrows furrowed, pouting, hands on hips, full body, simple background with red tint",
+      "seed_offset": 2
+    },
+    {
+      "name": "sad",
+      "prompt_modifier": "sad expression, teary eyes, looking down, hands clasped, full body, simple background with blue tint",
+      "seed_offset": 3
+    },
+    {
+      "name": "chain",
+      "prompt_modifier": "focused intense expression, action pose, magical energy aura, full body, dynamic background with light effects",
+      "seed_offset": 4
+    },
+    {
+      "name": "bigChain",
+      "prompt_modifier": "triumphant powerful expression, magical girl transformation pose, brilliant glowing aura, full body, dramatic rainbow background with stars",
+      "seed_offset": 5
+    },
+    {
+      "name": "lose",
+      "prompt_modifier": "defeated exhausted expression, kneeling on ground, tears in eyes, dim lighting, full body, dark background",
+      "seed_offset": 6
+    },
+    {
+      "name": "wink",
+      "prompt_modifier": "playful wink, tongue out, peace sign, cheerful, full body, colorful pastel background with hearts",
+      "seed_offset": 7
+    },
+    {
+      "name": "thinking",
+      "prompt_modifier": "thoughtful expression, finger on chin, one eye closed, cute puzzled look, full body, simple soft background",
+      "seed_offset": 8
+    },
+    {
+      "name": "victory",
+      "prompt_modifier": "triumphant heroic pose, arms raised, big confident smile, sparkles around, full body, sunset gradient background",
+      "seed_offset": 9
+    }
+  ],
+  "voice_lines": [
+    {"event": "select_preview", "text_template": "私、{name}！　よろしくね！"},
+    {"event": "chain_1",        "text_template": "いっき！"},
+    {"event": "chain_1_alt1",   "text_template": "えい！"},
+    {"event": "chain_1_alt2",   "text_template": "ぱっ！"},
+    {"event": "chain_2",        "text_template": "にれんさ！"},
+    {"event": "chain_2_alt1",   "text_template": "いいね、にれんさ！"},
+    {"event": "chain_2_alt2",   "text_template": "ふふっ、続くよ！"},
+    {"event": "chain_big",      "text_template": "だ・い・れ・ん・さーー！"},
+    {"event": "chain_big_alt1", "text_template": "うわぁーー、すごーい！　だいれんさ！"},
+    {"event": "chain_big_alt2", "text_template": "きゃーー！　まだまだいくよぉーー！"},
+    {"event": "skill",          "text_template": "はぁーーっ！　必殺技！"},
+    {"event": "skill_alt1",     "text_template": "見せてあげる、私の力！"},
+    {"event": "win",            "text_template": "やったー！　勝ったよ！"},
+    {"event": "win_alt1",       "text_template": "えへへ、また勝っちゃった！"},
+    {"event": "lose",           "text_template": "うぅ……負けちゃった……。"},
+    {"event": "lose_alt1",      "text_template": "つ、次はぜったい勝つもん！"},
+    {"event": "idle",           "text_template": "次は何モードで遊ぶ？"},
+    {"event": "idle_alt1",      "text_template": "ねぇ、遊ぼうよ！"},
+    {"event": "idle_alt2",      "text_template": "早く始めよ？"}
+  ],
+  "bgm_scenes": [
+    {"id": "title",          "tempo_bpm": 100, "key": "C",  "mood": "bright_arpeggio"},
+    {"id": "mode_select",    "tempo_bpm": 110, "key": "G",  "mood": "bouncy"},
+    {"id": "story_dialog",   "tempo_bpm": 80,  "key": "F",  "mood": "calm"},
+    {"id": "play_normal",    "tempo_bpm": 130, "key": "D",  "mood": "uptempo"},
+    {"id": "play_intense",   "tempo_bpm": 160, "key": "Am", "mood": "intense"},
+    {"id": "result_win",     "tempo_bpm": 120, "key": "C",  "mood": "triumphant"},
+    {"id": "result_lose",    "tempo_bpm": 70,  "key": "Dm", "mood": "melancholy"}
+  ],
+  "se_events": [
+    {"id": "button_tap",  "type": "click", "freq": 800,  "duration_ms": 60},
+    {"id": "move",        "type": "tone",  "freq": 600,  "duration_ms": 50},
+    {"id": "rotate",      "type": "sweep", "freq": 500,  "duration_ms": 80},
+    {"id": "harddrop",    "type": "thud",  "freq": 200,  "duration_ms": 120},
+    {"id": "land",        "type": "thud",  "freq": 300,  "duration_ms": 80},
+    {"id": "pop_small",   "type": "chime", "freq": 1000, "duration_ms": 100},
+    {"id": "pop_big",     "type": "chord", "freq": 800,  "duration_ms": 250},
+    {"id": "clip_saved",  "type": "chime", "freq": 1200, "duration_ms": 180},
+    {"id": "error",       "type": "buzz",  "freq": 220,  "duration_ms": 200}
+  ]
+}

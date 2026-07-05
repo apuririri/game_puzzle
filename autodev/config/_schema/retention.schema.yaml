@@ -1,0 +1,58 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+title: AutoDev retention.yaml
+type: object
+additionalProperties: false
+required: [evidence, logs, history, archive]
+properties:
+  evidence:
+    type: object
+    additionalProperties: false
+    required: [keep_days]
+    properties:
+      keep_days:
+        type: integer
+        minimum: 1
+  logs:
+    type: object
+    additionalProperties: false
+    required: [keep_days]
+    properties:
+      keep_days:
+        type: integer
+        minimum: 1
+  history:
+    type: object
+    additionalProperties: false
+    required: [keep_items]
+    properties:
+      keep_items:
+        type: integer
+        minimum: 1
+  artifacts:
+    type: object
+    additionalProperties: false
+    required: [keep_items]
+    properties:
+      keep_items:
+        type: integer
+        minimum: 1
+        description: 署名済み APK の保持世代数（autodev/artifacts/）。
+  archive:
+    type: object
+    additionalProperties: false
+    required: [dir]
+    properties:
+      dir:
+        type: string
+  # 案7 追加項目
+  critical_evidence:
+    type: object
+    additionalProperties: false
+    required: [enabled, archived_dir]
+    properties:
+      enabled:
+        type: boolean
+        description: attestation 完了時に evidence パスを永続化するか。
+      archived_dir:
+        type: string
+        description: 永続化先（autodev/evidence/_archived 既定）。cleanup の prune 対象から除外。

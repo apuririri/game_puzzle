@@ -1,0 +1,51 @@
+{
+  "schema_version": "5.2",
+  "target": "セーブ_ロード",
+  "scope": "feature",
+  "design_doc_ref": "docs/設計/features/セーブ_ロード.md",
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "SaveSlotEntity 一覧 + 削除",
+      "layer": "ui",
+      "category": "画面要素",
+      "design_doc_ref": {
+        "file": "docs/設計/features/セーブ_ロード面要素",
+        "section": "md#画面要素"
+      },
+      "files": [
+        "app/src/main/java/com/example/myapp/ui/screen/SaveSlotScreen.kt"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "T2",
+      "title": "SaveSlotEntity 一覧 + 削除 - ユーザー操作 & エラーケース",
+      "layer": "ui",
+      "category": "ユーザー操作",
+      "design_doc_ref": {
+        "file": "docs/設計/features/セーブ_ロードー操作",
+        "section": "md#ユーザー操作"
+      },
+      "files": [
+        "app/src/main/java/com/example/myapp/ui/screen/SaveSlotScreen.kt"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "T3",
+      "title": "SaveSlotEntity 一覧 + 削除 - 受け入れ条件 (Maestro smoke + 起動)",
+      "layer": "ui_test",
+      "category": "受け入れ条件",
+      "design_doc_ref": {
+        "file": "docs/設計/features/セーブ_ロードれ条件",
+        "section": "md#受け入れ条件"
+      },
+      "files": [
+        "maestro/smoke_title.yaml",
+        "autodev/evidence/screenshots/ui_phase1/title.png"
+      ],
+      "status": "completed"
+    }
+  ]
+}

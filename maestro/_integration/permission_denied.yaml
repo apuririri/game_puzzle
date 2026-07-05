@@ -1,0 +1,30 @@
+# 機能横断シナリオ: 権限拒否時の画面遷移（S10 IV3 雛形）
+# 権限ダイアログを拒否した場合に、アプリがクラッシュせず適切な代替 UI / 案内を出すことを確認。
+# Android 13+ では通知権限が典型例。実装機能に合わせて差し替える。
+#
+# 注: Maestro の `text` は正規表現として解釈されるが、apostrophe ・特殊記号を含むと
+# 端末ロケールで揺れるため、testTag 参照を優先する。実プロジェクトでは
+# 権限ダイアログ自体の testTag は付けられないため、ロケール別の text を `optional: true` で並べる。
+appId: com.karakurai.prismalink
+---
+- launchApp:
+    clearState: true
+- assertVisible:
+    id: "login_root"
+# 権限を要求する画面まで遷移（実装に合わせる）
+# 権限ダイアログが出たら拒否する。ロケール別に並べ、いずれもヒットしなければ次に進む。
+- tapOn:
+    text: "許可しない"
+    optional: true
+- tapOn:
+    text: "拒否"
+    optional: true
+- tapOn:
+    text: "Deny"
+    optional: true
+- tapOn:
+    text: "Don.t allow"          # apostrophe を `.` でエスケープ（regex）
+    optional: true
+- assertVisible:
+    id: "home_root"
+- takeScreenshot: autodev/evidence/_integration/screenshots/permission_denied

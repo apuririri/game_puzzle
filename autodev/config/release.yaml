@@ -1,0 +1,56 @@
+# ============================================================
+# デプロイ・リリース最終確認（S14）設定 / FR-5.19
+# autodev-release-gate skill が参照する。
+# ============================================================
+
+# RG1 → RG3 → RG1 再走の上限。超過時は blocking_issues に転記して blocked。
+max_release_cycles: 5
+
+# RG2 実行時の対象環境（emulator | device）。device は規約7 に従い実 deploy 直前にユーザー承認。
+release_smoke_target: "emulator"
+
+# RG2 で実行する Maestro flow リスト（空ならば maestro/ 配下の *.yaml 全て + smoke を先頭）。
+release_smoke_flows: []
+
+# RG2 のタイムアウト（秒）。
+release_smoke_timeout_sec: 1800
+
+# APK サイズ閾値（バイト）。RG1 check_release_build.sh で確認。0 は無効。
+apk_size_max_bytes: 0
+
+# RG1 各ゲートの実行有無（既定全 true）。allowlist 的に一部無効化したい場合のみ false にする
+# （非推奨。理由を HARNESS_NOTES.md に記録すること）。
+gates:
+  release_clean:        true
+  no_mocks:             true
+  design_sync:          true
+  room_schema:          true
+  dead_assets:          true
+  testtag_coverage:     true
+  no_debug_artifacts:   true
+  manifest_release:     true
+  release_build:        true
+  release_strings:      true
+  dependencies:         true
+
+# RG1 check_no_debug_artifacts.sh の検出パターン allowlist。
+debug_artifact_allowlist:
+  - 'BuildConfig\.DEBUG'           # 分岐自体は許容、本番側の到達は別途検出
+  - 'androidx\.compose\.ui\.tooling'
+
+# RG1 check_manifest_release.sh の権限 allowlist（明示宣言の上で使う必要権限）。
+allowed_permissions:
+  - android.permission.INTERNET
+  - android.permission.ACCESS_NETWORK_STATE
+  # 個別の必要権限はここに追加し、なぜ必要かを設計書 §権限 に記載する。
+
+# RG1 check_release_strings.sh の locale。空なら多言語チェックを無効化。
+locales: []
+  # - ja
+  # - en
+
+# 証跡保存先（プロジェクトルート相対）。
+evidence_dir: "autodev/evidence/_release"
+
+# attestation 出力先。
+attestation_path: "autodev/state/attestations/release.json"

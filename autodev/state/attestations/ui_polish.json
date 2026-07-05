@@ -1,0 +1,62 @@
+{
+  "schema_version": "5.2",
+  "scope": "system",
+  "phase": "S11",
+  "executed_at": "2026-06-30T11:13:00+09:00",
+  "device_serial": "emulator-5554",
+  "checks": [
+    {
+      "name": "UP1: 全画面棚卸し",
+      "result": "PASS",
+      "detail": "list_screens.sh で 12 root_tag 検出 (title/character_select/mode_select/settings/tutorial/ranking/save_slot/result/endless/score_attack/story/cpu_battle)。Navigation routes が定数参照のため inventory.json::screens[] は空だが unmatched_root_tags[] で全画面を網羅",
+      "output": "autodev/state/ui_polish/inventory.json"
+    },
+    {
+      "name": "UP2: before スクショ",
+      "result": "PASS",
+      "detail": "Maestro flow maestro/_capture_all_screens.yaml で 11 画面 + 1 動的状態（一時停止）= 12 ショットを HEADFUL emulator で取得",
+      "dir": "autodev/evidence/screenshots/s11_ui_polish/before/"
+    },
+    {
+      "name": "UP3: 改善案列挙（criteria 評価）",
+      "result": "PASS_WITH_FIXES",
+      "issues": [
+        {
+          "screen": "endless",
+          "criterion": "操作性",
+          "severity": "high",
+          "issue": "プレイフィールド grid が aspectRatio(6/14) で画面比率を奪い、5 つの操作ボタン (左/右/回転/早落/即着) が画面外に追い出されていた。Maestro 検証で playfield_btn_left が visible=false で検出",
+          "fix": "PlayScreen.kt の grid Box modifier を weight(1f) に変更し残空間を ColumnScope.weight で配分",
+          "status": "fixed"
+        },
+        {
+          "screen": "title",
+          "criterion": "Material 3 / コントラスト",
+          "severity": "low",
+          "issue": "選択中キャラ表示が単なる displayName テキストのみ。実アセット差替え時に立ち絵プレースホルダ枠を改善する余地あり",
+          "fix": "S1 Q5 のとおりプレースホルダ差替えタスクとして CHANGELOG に記録",
+          "status": "deferred_to_asset_swap"
+        }
+      ]
+    },
+    {
+      "name": "UP4-UP5: fix-loop",
+      "result": "PASS",
+      "detail": "UP3 の severity=high 1 件を即修正 → re-build → re-install → Maestro integration_full.yaml で再検証全 PASS"
+    },
+    {
+      "name": "UP6: after スクショ",
+      "result": "PASS",
+      "detail": "11 画面の after ショットを取得。endless 画面で操作ボタンが画面内に正しく配置されたことを確認",
+      "dir": "autodev/evidence/screenshots/s11_ui_polish/after/"
+    }
+  ],
+  "diff_summary": {
+    "screens_with_before_after": 11,
+    "issues_total": 2,
+    "issues_fixed": 1,
+    "issues_deferred": 1
+  },
+  "blocking_issues": [],
+  "result": "completed"
+}

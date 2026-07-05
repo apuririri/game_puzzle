@@ -1,0 +1,16 @@
+# 起動スモーク（リリース APK 含む全ビルドで PASS を維持する起動確認）。
+# appId は loop.yaml::application_id と一致させること。testTag（resource-id）参照のみ・座標タップ禁止。
+appId: com.karakurai.prismalink
+---
+- launchApp:
+    clearState: false
+- assertVisible:
+    id: "title_root"
+- assertVisible:
+    id: "title_logo"
+- assertVisible:
+    id: "title_start_button"
+- assertVisible:
+    id: "title_settings_button"
+# パスはリポジトリルート起点（test_maestro.sh / run_maestro.sh がルートで実行する）
+- takeScreenshot: autodev/evidence/screenshots/smoke/smoke_title

@@ -1,0 +1,34 @@
+appId: com.karakurai.prismalink
+name: verify_apuririri_review
+---
+- launchApp:
+    clearState: true
+- waitForAnimationToEnd
+# 1) キャラ選択→apuririri を選択→ボイス試聴
+- tapOn:
+    id: "title_character_select_button"
+- waitForAnimationToEnd
+- swipe:
+    from: { id: "character_list" }
+    direction: LEFT
+- waitForAnimationToEnd
+- tapOn:
+    id: "character_card_apuririri"
+- waitForAnimationToEnd
+- takeScreenshot:
+    path: autodev/evidence/_apuririri_review/01_selected
+# 2) 決定→タイトル
+- tapOn:
+    id: "character_confirm_button"
+- waitForAnimationToEnd
+- takeScreenshot:
+    path: autodev/evidence/_apuririri_review/02_title
+# 3) はじめる→エンドレスモードでスキル欄が "ギャルサンシャイン" になるか確認
+- tapOn:
+    id: "title_start_button"
+- waitForAnimationToEnd
+- tapOn:
+    id: "mode_endless_button"
+- waitForAnimationToEnd
+- takeScreenshot:
+    path: autodev/evidence/_apuririri_review/03_play_skill_name

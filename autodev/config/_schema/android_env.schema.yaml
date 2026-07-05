@@ -1,0 +1,61 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+title: AutoDev for Android android_env.yaml
+type: object
+additionalProperties: false
+required: [sdk, jdk, avd, emulator, gradle, maestro]
+properties:
+  sdk:
+    type: object
+    additionalProperties: false
+    required: [cmdline_tools_version, platform, build_tools, system_image]
+    properties:
+      root: { type: string }
+      cmdline_tools_version: { type: string }
+      platform:
+        type: string
+        pattern: "^android-[0-9]+$"
+      build_tools: { type: string }
+      system_image:
+        type: string
+        pattern: "^system-images;"
+  jdk:
+    type: object
+    additionalProperties: false
+    required: [major, url_linux_x64]
+    properties:
+      dir: { type: string }
+      major:
+        type: integer
+        minimum: 17
+      url_linux_x64: { type: string }
+      sha256: { type: string }
+  avd:
+    type: object
+    additionalProperties: false
+    required: [name, device_profile]
+    properties:
+      name: { type: string }
+      device_profile: { type: string }
+  emulator:
+    type: object
+    additionalProperties: false
+    required: [headless, gpu, boot_timeout_sec]
+    properties:
+      headless: { type: boolean }
+      gpu: { type: string }
+      boot_timeout_sec:
+        type: integer
+        minimum: 30
+      allow_no_accel: { type: boolean }
+  gradle:
+    type: object
+    additionalProperties: false
+    required: [version]
+    properties:
+      version: { type: string }
+  maestro:
+    type: object
+    additionalProperties: false
+    properties:
+      version: { type: string }
+      home: { type: string }

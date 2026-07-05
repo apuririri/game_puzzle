@@ -1,0 +1,126 @@
+# AutoDev for Android（雛形）
+
+`claude --dangerously-skip-permissions` で起動した単一の AI エージェントが、要件定義書 / 機能要件書 / 修正対応書（Markdown）を入力に、
+**Kotlin × Jetpack Compose × Room × DataStore** の Android アプリを全自動開発するためのプロジェクト雛形です。
+
+Claude Code の **hooks**（ハーネス強制）と **skills**（標準手順）に導かれ、単一 dev 環境・直列ループ・
+実機検証（エミュレータ/実機 + Compose UI Test / Maestro + ADB スクショ + logcat 必須）・
+ペルソナ駆動テスト・タスクと設計書の紐付けで開発を進めます。
+進捗は `autodev/開発進捗状況.md` で随時可視化されます。デプロイ先は開発者のスマートフォンです（ストア公開は対象外）。
+
+> この雛形を clone し、`bash setup.sh` を実行するだけで（**Android Studio・JDK・SDK の事前導入は不要**）、
+> すぐに新しい Android アプリの自動開発を開始できます。
+
+---
+
+## クイックスタート
+
+### 前提
+
+- OS: **Ubuntu（一次サポート）** / macOS（ベストエフォート）。Windows は WSL2 のエミュレータ制約のため非推奨。
+- 必要ツール: `git` `curl` `unzip`（不足時は setup.sh が apt で自動導入を試行）
+- リソース目安: ディスク空き 15GB / RAM 8GB 以上 / KVM 利用可（無くても動くが低速）
+- ネットワーク: `dl.google.com`（SDK）・adoptium（JDK）・`services.gradle.org`（Gradle）・Maven Central / Google Maven（依存）・`get.maestro.mobile.dev`（Maestro）へ到達できること
+
+### 1. clone
+
+```bash
+git clone <this-repo> my-app
+cd my-app
+```
+
+### 2. セットアップ（ゼロタッチ・完全非対話）
+
+```bash
+bash setup.sh
+```
+
+setup.sh は以下を**無人で**行い、実行可能な状態にします（冪等。再実行で続きから）。
+
+- ホスト検査（OS / ディスク / KVM。WSL2 は警告）と基本ツール（git/curl/unzip/jq）の自動導入試行
+- **JDK 17**（Temurin）をユーザー領域へ自動導入（`~/.autodev-android/jdk`）
+- **Android SDK**（cmdline-tools / platform-tools / platforms / build-tools / emulator / system-image）を
+  `~/Android/Sdk` へ自動導入（ライセンス自動同意。既存 SDK があれば再利用）
+- **AVD 作成**・**Maestro CLI 導入**・release 署名用 **keystore 自動生成**（`autodev/secrets/`・git 管理外）
+- Gradle 初回ビルド（assembleDebug）・git hooks 有効化・`.claude/skills` 同期
+- ヘルスチェック → エミュレータ起動 → アプリ install → 起動 → `maestro/smoke.yaml` PASS → スクショ採取
+
+版数は `autodev/config/android_env.yaml` にピン留めされています。診断のみは `bash setup.sh --doctor`。
+
+### 3. 自動開発を起動
+
+```bash
+# 入力ファイルを書く（テンプレートは autodev/inputs/_テンプレート/）
+vi autodev/inputs/要件定義/要件定義書.md
+
+# AI エージェントを起動
+claude --dangerously-skip-permissions
+> 要件定義書.mdのシステムを自動で開発してください
+```
+
+起動プロンプトは3形態:
+
+| モード | プロンプト例 | 入力 |
+|---|---|---|
+| システム全体開発 | 「要件定義書.mdのシステムを自動で開発してください」 | `autodev/inputs/要件定義/要件定義書.md` |
+| 機能単位開発 | 「機能要件_ログイン.mdの機能を自動で開発してください」 | `autodev/inputs/要件定義/機能要件_<機能名>.md` |
+| 修正対応 | 「修正_xxx.mdの修正を自動で対応してください」 | `autodev/inputs/修正対応/修正_<修正名>.md` |
+
+### 4. 進捗確認（別端末でも可）
+
+```bash
+tail -f autodev/開発進捗状況.md
+```
+
+---
+
+## ディレクトリ構成
+
+```
+.
+├── README.md / SETUP.md / setup.sh
+├── CLAUDE.md                 # 最小ポインタ → autodev/CLAUDE_MAIN.md
+├── .claude/                  # Claude Code 設定・hooks 宣言・skills（リリース時に削除）
+├── autodev/                  # ★ ツール本体（リリース時に削除）
+│   ├── CLAUDE_MAIN.md, HARNESS_NOTES.md, 開発進捗状況.md
+│   ├── config/               # loop / deploy / retention / watchdog / android_env（版数ピン留め）
+│   ├── hooks/                # git hooks + Claude Code hooks 実体
+│   ├── skills/               # SKILL.md 実体（.claude/skills へ同期）
+│   ├── scripts/              # ラッパー・ゲート・ヘルスチェック・ビルド/テスト/ADB 高レベル
+│   ├── inputs/               # 入力ファイル（要件定義 / 修正対応 / テンプレート）
+│   ├── state/                # 状態 JSON（git tracked）
+│   ├── evidence/ logs/ artifacts/ secrets/
+├── app/                      # 顧客提供物（Android アプリ: Kotlin + Compose + Room + DataStore）
+├── maestro/                  # 顧客提供物（E2E flow。smoke.yaml ほか）
+├── gradle/ gradlew ほか      # 顧客提供物（ビルド一式。wrapper は setup.sh が初回生成）
+└── docs/設計/                # 顧客提供物（設計書）
+```
+
+## デバイスでの検証・デプロイ
+
+- 開発検証は **headless エミュレータ**が既定（`HEADFUL=1 autodev/scripts/start_emulator.sh` で GUI 表示）。
+- 開発者実機へのデプロイ: 実機を USB 接続（USB デバッグ許可）し、AI に「**emulator から device へデプロイしてください**」。
+  実機反映は必ず明示承認を求めます。失敗時は前世代 APK へ自動ロールバック（`autodev/artifacts/` に世代保管）。
+- **keystore のバックアップ必須**: `autodev/secrets/` を失うと実機側は uninstall（データ消失）しないと更新できなくなります。
+
+## リリース（顧客提供物の分離）
+
+```bash
+autodev/scripts/check_release_clean.sh   # 依存混入チェック
+cp autodev/artifacts/<最新>.apk <納品先>/ # 署名済み APK を確保
+rm -rf autodev/ .claude/ CLAUDE.md       # ツール本体を一括削除
+rm -f app/CLAUDE.md maestro/CLAUDE.md
+```
+
+残った `app/ maestro/ docs/設計/ gradle一式 README 等` + APK が顧客提供物です。詳細は `autodev/CLAUDE_MAIN.md`。
+
+---
+
+本ツール（AI エージェント）は **Claude Code 専用**です（hooks / skills 機能に依存）。
+
+### 中断からの再開・無人運用（任意）
+
+- **再開**: 作業が途中で止まっても、`claude --dangerously-skip-permissions` を起動して「作業を再開して」と送るだけで、`autodev/state/current.json` と進捗.md から**直前の位置を復元して継続**します。
+- **無人自動再開（opt-in）**: `bash autodev/scripts/setup_watchdog.sh`（Linux/macOS/WSL）。tmux 常駐＋cron が heartbeat を監視し、停止検知時に同一セッションへ「作業を再開して」を自動送信します。解除は `teardown_watchdog.sh`。
+- **一時停止**: `autodev/config/watchdog.yaml` の `enabled:` を `false` に。
+- **状態確認**: `crontab -l | grep autodev-watchdog` / `tail -f autodev/logs/watchdog.log` / `tmux ls`。

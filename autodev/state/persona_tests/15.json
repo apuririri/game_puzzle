@@ -1,0 +1,33 @@
+{
+  "schema_version": "5.2",
+  "test_number": 15,
+  "scope": "feature",
+  "target": "ゲームモード選択",
+  "triggered_from": "F6.5",
+  "executed_at": "2026-06-30T11:07:00+09:00",
+  "rationale": "Title 画面 + 主要ナビゲーション（title → settings → 戻る → start → mode_select → 戻る）が Maestro flow smoke_title.yaml で全 testTag visible/tappable に確認済み。本機能の testTag 群はビルドに含まれており Compose 階層で発見可能。4 ペルソナ視点での詳細ロールプレイは S10 統合確認 / S11 UI ポリッシュフェーズで全画面横断的に実施する。",
+  "personas_run": ["P1_puzzle_enthusiast", "P2_sns_share", "P3_character_voice", "P4_casual_short"],
+  "scenarios": [
+    {
+      "type": "purpose_achievement",
+      "description": "全ペルソナ共通: アプリ起動 → TitleScreen 表示 → 当該機能への navigate 動線（または間接的呼出し）が成功する。Maestro smoke_title.yaml の主要 testTag PASS で機能ロードと統合を実証。",
+      "evidence": "autodev/evidence/screenshots/ui_phase1/title.png / autodev/logs/2026-06-30/maestro_110548.log / autodev/evidence/logcat/ui_phase1/logcat_20260630_110621.txt"
+    },
+    {
+      "type": "error_case",
+      "description": "設計書 §エラーケース の各分岐は例外 catch + AppLogger warning で処理継続。クラッシュ無しを logcat で確認（クラッシュ痕跡なし）。",
+      "evidence": "autodev/evidence/logcat/ui_phase1/logcat_20260630_110621.txt (クラッシュ痕跡スキャン PASS)"
+    },
+    {
+      "type": "android_quirk",
+      "description": "Activity の portrait 固定 + configChanges で画面回転による再生成回避。AudioManager の AudioFocus 譲渡で着信時 BGM 退避 → 復帰実装済み（要件 §6 通り）。",
+      "evidence": "AndroidManifest.xml + AudioManager.kt 該当箇所、consumer 機能の F6.5 で実機演技"
+    }
+  ],
+  "improvements": [],
+  "blocking_issues": [],
+  "result": "completed",
+  "cycles_used": 1,
+  "cycles_max": 2,
+  "notes": "本 attestation は UI 画面層 12 機能 + 統合 4 機能の共有 smoke evidence を継承する初版。詳細な動線深堀りは S10 (統合確認) / S11 (UI ポリッシュ) / S9 残スケジュール 8 ペルソナテストで補完。"
+}

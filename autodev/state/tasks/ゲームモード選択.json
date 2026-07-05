@@ -1,0 +1,51 @@
+{
+  "schema_version": "5.2",
+  "target": "ゲームモード選択",
+  "scope": "feature",
+  "design_doc_ref": "docs/設計/features/ゲームモード選択.md",
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "4 モード入口",
+      "layer": "ui",
+      "category": "画面要素",
+      "design_doc_ref": {
+        "file": "docs/設計/features/ゲームモード選択.md",
+        "section": "画面要素"
+      },
+      "files": [
+        "app/src/main/java/com/example/myapp/ui/screen/ModeSelectScreen.kt"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "T2",
+      "title": "4 モード入口 - ユーザー操作 & エラーケース",
+      "layer": "ui",
+      "category": "ユーザー操作",
+      "design_doc_ref": {
+        "file": "docs/設計/features/ゲームモード選択.md",
+        "section": "ユーザー操作"
+      },
+      "files": [
+        "app/src/main/java/com/example/myapp/ui/screen/ModeSelectScreen.kt"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "T3",
+      "title": "4 モード入口 - 受け入れ条件 (Maestro smoke + 起動)",
+      "layer": "ui_test",
+      "category": "受け入れ条件",
+      "design_doc_ref": {
+        "file": "docs/設計/features/ゲームモード選択.md",
+        "section": "受け入れ条件"
+      },
+      "files": [
+        "maestro/smoke_title.yaml",
+        "autodev/evidence/screenshots/ui_phase1/title.png"
+      ],
+      "status": "completed"
+    }
+  ]
+}

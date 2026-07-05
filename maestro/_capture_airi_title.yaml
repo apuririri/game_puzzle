@@ -1,0 +1,14 @@
+appId: com.karakurai.prismalink
+---
+- launchApp:
+    clearState: false
+- tapOn:
+    id: "title_character_select_button"
+- waitForAnimationToEnd
+- takeScreenshot: char_select_with_image
+- tapOn:
+    id: "character_card_airi"
+- tapOn:
+    id: "character_confirm_button"
+- waitForAnimationToEnd
+- takeScreenshot: title_with_airi

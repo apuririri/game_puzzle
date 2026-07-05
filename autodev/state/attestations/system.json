@@ -1,0 +1,13 @@
+{
+  "schema_version": "5.2",
+  "scope": "system_aggregate",
+  "generated_at": "2026-06-30T11:26:00+09:00",
+  "smoke_evidence": {
+    "executed_at": "2026-06-30T11:17:52+09:00",
+    "logcat": "autodev/evidence/_smoke/logcat_20260630_111752.txt",
+    "unit_test": "PASS (1 test class)",
+    "android_test": "PASS (AppDatabaseTest 6/6)",
+    "maestro_smoke": "smoke.yaml + integration_full.yaml PASS",
+    "crash_count": 0
+  }
+}

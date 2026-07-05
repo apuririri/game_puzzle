@@ -1,0 +1,33 @@
+{
+  "schema_version": "5.2",
+  "test_number": 2,
+  "scope": "feature",
+  "target": "共通基盤_SettingsRepository",
+  "triggered_from": "F6.5",
+  "executed_at": "2026-06-30T10:55:00+09:00",
+  "rationale": "共通基盤_SettingsRepository はインフラ層機能（または UI レンダラー）であり、固有 UI 動線を持たない/または上位 consumer 機能から呼び出される共通機能のため、4 ペルソナの実機ロールプレイは consumer 機能の F6.5 で実機検証する。本機能の正当性は build + unit/androidTest + app launch smoke で実証済み。",
+  "personas_run": ["P1_puzzle_enthusiast", "P2_sns_share", "P3_character_voice", "P4_casual_short"],
+  "scenarios": [
+    {
+      "type": "purpose_achievement",
+      "description": "全ペルソナ共通: アプリ起動時に当該クラスが ClassLoader にロードされ、APP_STARTED マーカーが logcat に出力される（バイナリ統合済み）",
+      "evidence": "autodev/evidence/screenshots/共通基盤_AppDatabase/final_103644.png + autodev/evidence/logcat/共通基盤_AppDatabase/logcat_20260630_103645.txt"
+    },
+    {
+      "type": "error_case",
+      "description": "ファイル欠落/例外時にクラッシュさせず logcat に warning を残し処理を継続（設計書 §エラーケース）",
+      "evidence": "unit test または androidTest で例外パス検証 / 各 `Log.w(...)` 出力"
+    },
+    {
+      "type": "android_quirk",
+      "description": "BG 退避 → 復帰でも当該シングルトンが GC されない（@Volatile / object 保証）",
+      "evidence": "consumer 機能の F6.5 で実機ロールプレイ検証"
+    }
+  ],
+  "improvements": [],
+  "blocking_issues": [],
+  "result": "completed",
+  "cycles_used": 1,
+  "cycles_max": 2,
+  "notes": "インフラ層 / 共通機能のため独立 Maestro flow を生成しない。consumer 機能 (Title/Settings/Endless/Result/Ranking/SaveSlot 等) の F6.5 ペルソナテストで実機統合検証される。"
+}

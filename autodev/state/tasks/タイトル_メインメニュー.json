@@ -1,0 +1,51 @@
+{
+  "schema_version": "5.2",
+  "target": "タイトル_メインメニュー",
+  "scope": "feature",
+  "design_doc_ref": "docs/設計/features/タイトル_メインメニュー.md",
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "Title 画面（5 ボタン + キャラ preview + BGM 起動）",
+      "layer": "ui",
+      "category": "画面要素",
+      "design_doc_ref": {
+        "file": "docs/設計/features/タイトル_メインメニュー.要素",
+        "section": "d#画面要素"
+      },
+      "files": [
+        "app/src/main/java/com/example/myapp/ui/screen/TitleScreen.kt"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "T2",
+      "title": "Title 画面（5 ボタン + キャラ preview + BGM 起動） - ユーザー操作 & エラーケース",
+      "layer": "ui",
+      "category": "ユーザー操作",
+      "design_doc_ref": {
+        "file": "docs/設計/features/タイトル_メインメニュー.操作",
+        "section": "d#ユーザー操作"
+      },
+      "files": [
+        "app/src/main/java/com/example/myapp/ui/screen/TitleScreen.kt"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "T3",
+      "title": "Title 画面（5 ボタン + キャラ preview + BGM 起動） - 受け入れ条件 (Maestro smoke + 起動)",
+      "layer": "ui_test",
+      "category": "受け入れ条件",
+      "design_doc_ref": {
+        "file": "docs/設計/features/タイトル_メインメニュー.条件",
+        "section": "d#受け入れ条件"
+      },
+      "files": [
+        "maestro/smoke_title.yaml",
+        "autodev/evidence/screenshots/ui_phase1/title.png"
+      ],
+      "status": "completed"
+    }
+  ]
+}

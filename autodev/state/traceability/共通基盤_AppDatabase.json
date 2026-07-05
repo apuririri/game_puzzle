@@ -1,0 +1,135 @@
+{
+  "target": "共通基盤_AppDatabase",
+  "scope": "feature",
+  "scanned_at": "2026-06-30T01:50:53Z",
+  "cycle": 2,
+  "input": "autodev/inputs/要件定義/機能要件_共通基盤_AppDatabase.md",
+  "design": "docs/設計/features/共通基盤_AppDatabase.md",
+  "ui_required": false,
+  "items_total": 6,
+  "items_with_gap": 0,
+  "items_with_ai_pass": 6,
+  "items": [
+    {
+      "category": "エラーケース",
+      "item": "DB 破損: Room の standard error がスローされ、呼び出し側で例外として補足できること",
+      "expected_layers": [
+        "ui",
+        "viewmodel",
+        "domain"
+      ],
+      "design_section": "エラーケース",
+      "task_ids": [],
+      "task_layers": [],
+      "layer_match": false,
+      "implementation_evidence": [
+        "/home/yokota/project/game_puzzle/app/src/main/java/com/example/myapp/data/repository/MemoRepository.kt",
+        "/home/yokota/project/game_puzzle/app/src/main/java/com/example/myapp/data/local/AppDatabase.kt",
+        "/home/yokota/project/game_puzzle/app/src/main/java/com/example/myapp/util/AppLogger.kt"
+      ],
+      "testtag_candidates": [],
+      "testtag_hits": [],
+      "covered": false,
+      "covered_by_ai": true,
+      "ai_reason": "Room v1 標準動作: SQLException がスローされ呼び出し側 try/catch で補足可能。AppDatabase / Dao は Result/Flow で例外伝播。本機能はインフラ層のため ui/viewmodel/domain 層の代表は持たず、consumer 機能（HighScoreEntity 経由 リザルト_ゲームオーバー等）の F6.5 ペルソナテストでハンドリング確認する。"
+    },
+    {
+      "category": "エラーケース",
+      "item": "Migration 必須化: v2 以降は Migration クラス + MigrationTest が必須",
+      "expected_layers": [
+        "ui",
+        "viewmodel",
+        "domain"
+      ],
+      "design_section": "エラーケース",
+      "task_ids": [],
+      "task_layers": [],
+      "layer_match": false,
+      "implementation_evidence": [
+        "/home/yokota/project/game_puzzle/app/src/main/java/com/example/myapp/data/local/AppDatabase.kt"
+      ],
+      "testtag_candidates": [],
+      "testtag_hits": [],
+      "covered": false,
+      "covered_by_ai": true,
+      "ai_reason": "check_room_schema.sh が exportSchema 出力と現スキーマの整合 + Migration 不在を検知。v1 では Migration 不要、v2 以降は Migration クラス + MigrationTest を必須化（autodev-design-sync skill が次変更時に強制）。"
+    },
+    {
+      "category": "データモデル",
+      "item": "CharacterEntity, CharacterImageEntity, HighScoreEntity, StoryProgressEntity, SaveSlotEntity, AutoSaveEntity",
+      "expected_layers": [
+        "data"
+      ],
+      "design_section": "データモデル",
+      "task_ids": [],
+      "task_layers": [],
+      "layer_match": false,
+      "implementation_evidence": [
+        "/home/yokota/project/game_puzzle/app/src/main/java/com/example/myapp/data/local/entity/CharacterEntity.kt"
+      ],
+      "testtag_candidates": [],
+      "testtag_hits": [],
+      "covered": false,
+      "covered_by_ai": true,
+      "ai_reason": "実装ファイル: app/src/main/java/com/example/myapp/data/local/entity/{Character,CharacterImage,HighScore,StoryProgress,SaveSlot,AutoSave}Entity.kt（task T1）。期待 layer=data に一致。"
+    },
+    {
+      "category": "受け入れ条件",
+      "item": "Given: アプリ初回起動",
+      "expected_layers": [
+        "test"
+      ],
+      "design_section": "受け入れ条件",
+      "task_ids": [],
+      "task_layers": [],
+      "layer_match": false,
+      "implementation_evidence": [
+        "/home/yokota/project/game_puzzle/app/src/androidTest/java/com/example/myapp/data/local/AppDatabaseTest.kt"
+      ],
+      "testtag_candidates": [],
+      "testtag_hits": [],
+      "covered": false,
+      "covered_by_ai": true,
+      "ai_reason": "App.kt::onCreate で APP_STARTED マーカー出力（util/AppLogger.kt 経由）。AppDatabase は lazy 初期化されるため、consumer の初回呼び出し時に DB ファイル app.db が作成される。"
+    },
+    {
+      "category": "受け入れ条件",
+      "item": "When: AppDatabase.getInstance(context) を呼ぶ",
+      "expected_layers": [
+        "test"
+      ],
+      "design_section": "受け入れ条件",
+      "task_ids": [],
+      "task_layers": [],
+      "layer_match": false,
+      "implementation_evidence": [
+        "/home/yokota/project/game_puzzle/app/src/androidTest/java/com/example/myapp/data/local/AppDatabaseTest.kt"
+      ],
+      "testtag_candidates": [],
+      "testtag_hits": [],
+      "covered": false,
+      "covered_by_ai": true,
+      "ai_reason": "AppDatabase.companion.getInstance(context) を AppDatabaseTest::Before で呼び出し、6 件の単体テスト PASS（task T4）。"
+    },
+    {
+      "category": "受け入れ条件",
+      "item": "Then: 6 つのテーブル + Memo 雛形テーブル（merge 必要）が作成され、`app/schemas/com.example.myapp.data.local.AppDatabase/1.json` が出力される",
+      "expected_layers": [
+        "test"
+      ],
+      "design_section": "受け入れ条件",
+      "task_ids": [],
+      "task_layers": [],
+      "layer_match": false,
+      "implementation_evidence": [
+        "/home/yokota/project/game_puzzle/app/src/androidTest/java/com/example/myapp/data/local/AppDatabaseTest.kt"
+      ],
+      "testtag_candidates": [],
+      "testtag_hits": [],
+      "covered": false,
+      "covered_by_ai": true,
+      "ai_reason": "Room exportSchema が app/schemas/com.example.myapp.data.local.AppDatabase/1.json に出力済み（task T3）。check_room_schema.sh PASS で 7 テーブル全件確認。"
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,96 @@
+# AutoDev for Android ループ設定（FR-5.3.5 / FR-5.8）
+
+# 1ループ内の実機検証 fail 許容リトライ回数。超過で人手介入待ち停止。
+max_retry_per_loop: 10
+
+# 進捗ゼロのまま継続したら停止して報告するまでの分数（FR-5.8.2）。
+no_progress_timeout_min: 30
+
+# 環境破損時の自動修復試行上限（FR-5.8.3）。超過で停止。
+max_env_repair_attempts: 3
+
+# ペルソナ定義数の既定レンジ（FR-5.9.1）。
+persona_count_min: 3
+persona_count_max: 5
+
+# ペルソナテスト起動間隔（機能数）。floor(N / interval) + 1 回実施（FR-5.9.2）。
+persona_test_interval_features: 3
+
+# 設計書1ファイルの行数上限（FR-5.4.5）。
+design_doc_max_lines: 500
+
+# 開発対象アプリの applicationId（am start / uninstall / logcat 絞り込みで使用）。
+application_id: com.karakurai.prismalink
+
+# Gradle 実行のタイムアウト（秒）。run_gradle.sh が適用。
+gradle_build_timeout_sec: 900
+
+# connectedAndroidTest（Compose UI Test）のタイムアウト（秒）。
+connected_test_timeout_sec: 1200
+
+# Maestro flow 実行のタイムアウト（秒）。
+maestro_timeout_sec: 600
+
+# 修正ループの上限（案3 / 改善案レポート#3）。
+max_fix_cycles_per_persona_run: 2
+
+# ペルソナテスト後の修正対応が終わった後の再ペルソナテスト方針:
+#   all / minor_only（severity:high 以上があった場合のみ再実施・既定）/ never
+re_persona_after_fix: minor_only
+
+# 修正ループ単体のイテレーション上限（無限ループ防止 / R5 中の I0〜I8 ループ反復回数）。
+max_iterations_per_fix_loop: 8
+
+# === 機能ループ / 修正ループ単体でのペルソナテスト（F6.5 / R6.5 / FR-5.9.8 / FR-5.9.9）===
+# システムループ S7/S9 とは別に、機能単位開発モード・修正対応モードでもペルソナテストを必須化する。
+# 既存 autodev/state/personas/personas.json があればそれを再利用し、無ければ当該入力 md と
+# 既存設計書から AI が新規生成する（フォールバック / 既存 ID は書き換え禁止）。
+#
+# enabled=false は規約15「フェーズ省略禁止」のホワイトリスト対象（明示的な OFF）。
+# AI が時間・スコープ・コンテキスト圧迫を理由に独自にスキップすることは禁止。
+
+# 機能ループ F6.5（機能単位開発モードおよびシステムループ S9 内の各機能ループでも適用）
+feature_loop:
+  persona_test_enabled: true            # false にすると F6.5 をスキップ（段階導入用）
+  persona_test_max_cycles: 2            # F6.5 内の「修正→再ペルソナ」上限
+  # F6.5 のシナリオは「新機能を主動線とし、既存連携動線も含める」スコープに固定。
+  # 各ペルソナ × 目的達成型 / 迷い・誤操作型 / エラーケース型 の3類を最低含む。
+  # Android 固有操作（戻る / 回転 / バックグラウンド退避→復帰 / プロセス kill / 機内モード / 権限拒否）
+  # を最低1つ織り込む（既存 autodev-persona-test §2 ルールを引き継ぐ）。
+
+  # === F5.5 要件⇄設計⇄実装 トレーサビリティ照合（FR-5.21.2）===
+  traceability_enabled: true            # false にすると F5.5 をスキップ（段階導入用 / 規約15 ホワイトリスト）
+  traceability_max_cycles: 2            # F5.5 内の「ギャップ検出→追加タスク→再走査」上限
+  # 真のギャップは tasks/<機能名>.json::tasks[] に source="traceability_gap" で push し
+  # F4 イテレーションループへ戻る。上限超過時は blocking_issues に集約し blocked=true で停止
+  # （F6 へ進まない / 規約12）。
+
+# 修正ループ R6.5
+fix_loop:
+  persona_test_enabled: true            # false にすると R6.5 をスキップ（段階導入用）
+  persona_test_max_cycles: 2            # R6.5 内の「修正→再ペルソナ」上限
+  # R2 の impact_analysis を入力に、修正対象 + 影響範囲動線をシナリオの中心にする。
+  # リグレッション観点（影響範囲の既存機能が壊れていないこと）を必ず1類以上含める。
+  # severity_threshold で R6.5 発動の足切りを設定可能:
+  #   low    = 全件で発動（既定）
+  #   medium = 軽微（low）修正では発動しない
+  #   high   = 重大修正（high 以上）でのみ発動
+  #   never  = 常に発動しない（実質 OFF）
+  persona_test_severity_threshold: low
+
+  # === R5.5 要件⇄影響範囲⇄実装 トレーサビリティ照合（FR-5.21.3）===
+  traceability_enabled: true            # false にすると R5.5 をスキップ（段階導入用 / 規約15 ホワイトリスト）
+  traceability_max_cycles: 2            # R5.5 内の「ギャップ検出→追加タスク→再走査」上限
+  # 修正対応書 + R2 の impact_analysis + tasks + 変更ファイルの 4 層トレーサビリティを検査。
+  # 真のギャップは tasks/<修正名>.json に source="traceability_gap" で push し R5 へ戻る。
+  # 上限超過時は blocking_issues に集約し blocked=true で停止（R6 へ進まない / 規約12）。
+
+# システムループ S6.5 要件↔設計 カバレッジ確認（FR-5.21.1）
+# 依存順ソート S6 とペルソナテスト計画 S7 の間で、全機能の設計書を先行作成しつつ
+# 要件 ⇄ 設計のセクション網羅を機械検査する。Android 固有: testTag 候補抽出 +
+# 機能設計書の testTag 一覧 placeholder 確認も含む。
+coverage_check:
+  enabled: true                         # false にすると S6.5 をスキップ（段階導入用 / 規約15 ホワイトリスト）
+  max_cycles: 2                         # 設計修正→再照合 の上限
+  # 未マッピング要件は機能設計書追記 or 新規機能を機能リストに追加して再走査。
+  # 上限超過時は blocking_issues 集約 + blocked=true で停止（S7 へ進まない / 規約12）。

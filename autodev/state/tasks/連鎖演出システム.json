@@ -1,0 +1,53 @@
+{
+  "schema_version": "5.2",
+  "target": "連鎖演出システム",
+  "scope": "feature",
+  "design_doc_ref": "docs/設計/features/連鎖演出システム.md",
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "ChainEffectOverlay 6 testTag",
+      "layer": "ui",
+      "category": "画面要素",
+      "design_doc_ref": {
+        "file": "docs/設計/features/連鎖演出システム.md",
+        "section": "画面要素"
+      },
+      "files": [
+        "app/src/main/java/com/example/myapp/ui/effect/ChainEffectOverlay.kt",
+        "app/src/main/java/com/example/myapp/ui/viewmodel/PlayViewModel.kt"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "T2",
+      "title": "ChainEffectOverlay 6 testTag - ユーザー操作 & エラーケース",
+      "layer": "ui",
+      "category": "ユーザー操作",
+      "design_doc_ref": {
+        "file": "docs/設計/features/連鎖演出システム.md",
+        "section": "ユーザー操作"
+      },
+      "files": [
+        "app/src/main/java/com/example/myapp/ui/effect/ChainEffectOverlay.kt",
+        "app/src/main/java/com/example/myapp/ui/viewmodel/PlayViewModel.kt"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "T3",
+      "title": "ChainEffectOverlay 6 testTag - 受け入れ条件 (Maestro smoke + 起動)",
+      "layer": "ui_test",
+      "category": "受け入れ条件",
+      "design_doc_ref": {
+        "file": "docs/設計/features/連鎖演出システム.md",
+        "section": "受け入れ条件"
+      },
+      "files": [
+        "maestro/smoke_title.yaml",
+        "autodev/evidence/screenshots/ui_phase1/title.png"
+      ],
+      "status": "completed"
+    }
+  ]
+}

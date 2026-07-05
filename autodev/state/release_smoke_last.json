@@ -1,0 +1,10 @@
+{
+  "executed_at": "2026-06-30T11:25:16+09:00",
+  "target": "emulator",
+  "device_serial": "emulator-5554",
+  "apk_path": "app/build/outputs/apk/release/app-release.apk",
+  "logcat": "autodev/evidence/_release/logcat/logcat_20260630_112515.txt",
+  "evidence_dir": "autodev/evidence/_release",
+  "flows": ["smoke", "_capture_all_screens"],
+  "result": "pass"
+}

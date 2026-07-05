@@ -1,0 +1,14 @@
+appId: com.karakurai.prismalink
+---
+- launchApp:
+    clearState: false
+- assertVisible:
+    id: "title_root"
+- takeScreenshot: v3_title_new
+- tapOn:
+    id: "title_start_button"
+- tapOn:
+    id: "mode_endless_button"
+- assertVisible:
+    id: "playfield_grid"
+- takeScreenshot: v3_endless_new

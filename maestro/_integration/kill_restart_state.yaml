@@ -1,0 +1,16 @@
+# 機能横断シナリオ: アプリ kill → 再起動 で状態保持を確認（S10 IV3 雛形）
+# プロセス kill 後の状態復元（DataStore / SavedStateHandle / Room 永続化）を実機検証。
+appId: com.karakurai.prismalink
+---
+- launchApp:
+    clearState: false
+- assertVisible:
+    id: "home_root"
+- takeScreenshot: autodev/evidence/_integration/screenshots/kill_restart_before
+# プロセスを kill して再起動
+- stopApp
+- launchApp:
+    clearState: false
+- assertVisible:
+    id: "home_root"
+- takeScreenshot: autodev/evidence/_integration/screenshots/kill_restart_after

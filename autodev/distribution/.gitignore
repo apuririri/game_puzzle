@@ -1,0 +1,4 @@
+.server.pid
+.server.log
+www/latest.apk
+www/*.apk

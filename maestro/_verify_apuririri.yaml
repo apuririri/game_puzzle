@@ -1,0 +1,39 @@
+appId: com.karakurai.prismalink
+name: verify_apuririri
+---
+- launchApp:
+    clearState: true
+- waitForAnimationToEnd
+- tapOn:
+    id: "title_character_select_button"
+- waitForAnimationToEnd
+- takeScreenshot:
+    path: autodev/evidence/_apuririri/00_char_list
+# apuririri card はデフォルト末尾にあるので横スクロール
+- swipe:
+    from: { id: "character_list" }
+    direction: LEFT
+- waitForAnimationToEnd
+- tapOn:
+    id: "character_card_apuririri"
+- waitForAnimationToEnd
+- takeScreenshot:
+    path: autodev/evidence/_apuririri/01_selected
+- tapOn:
+    id: "character_voice_preview_button"
+- waitForAnimationToEnd
+- takeScreenshot:
+    path: autodev/evidence/_apuririri/02_voice_preview
+- tapOn:
+    id: "character_preview_image"
+- waitForAnimationToEnd
+- takeScreenshot:
+    path: autodev/evidence/_apuririri/03_modal_open
+- tapOn:
+    point: "10%,10%"
+- waitForAnimationToEnd
+- tapOn:
+    id: "character_confirm_button"
+- waitForAnimationToEnd
+- takeScreenshot:
+    path: autodev/evidence/_apuririri/04_after_confirm

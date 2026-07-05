@@ -1,0 +1,13 @@
+# UI 改善 動的状態 発火: home empty（S11 雛形）
+# 目的: データ 0 件のときの empty state を画面に出すこと。
+# スクショ取得は capture_all_screens.sh が adb screencap で行うため、この flow は撮影しない。
+# クリーンインストールで未登録の状態を再現する想定。
+appId: com.karakurai.prismalink
+---
+- launchApp:
+    clearState: true
+- assertVisible:
+    id: "home_root"
+- assertVisible:
+    id: "home_empty"
+    optional: true

@@ -1,0 +1,27 @@
+# ===== AutoDev for Android .gitattributes =====
+# クロスプラットフォーム（Linux / Windows Git Bash）でシェルスクリプトが
+# CRLF 化して壊れるのを防ぐ。.sh / hooks は必ず LF に固定する。
+
+* text=auto eol=lf
+
+# シェルスクリプト・hooks は必ず LF（Windows でも Git Bash で実行するため）
+*.sh           text eol=lf
+autodev/hooks/claude/*  text eol=lf
+autodev/hooks/pre-commit text eol=lf
+autodev/hooks/pre-push   text eol=lf
+
+# Windows 用バッチ／PowerShell は CRLF 可
+*.ps1          text eol=crlf
+*.bat          text eol=crlf
+*.cmd          text eol=crlf
+
+# バイナリ
+*.png          binary
+*.jpg          binary
+*.sqlite3      binary
+*.ico          binary
+*.apk          binary
+*.aab          binary
+*.jar          binary
+*.keystore     binary
+*.jks          binary

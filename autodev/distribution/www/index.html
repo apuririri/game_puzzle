@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プリズマ☆リンク ダウンロード</title>
+<style>
+  :root {
+    --primary: #FF6FA8;
+    --secondary: #7C4DFF;
+    --tertiary: #00E5FF;
+    --bg: #1A1B2E;
+    --card: #2A2C42;
+    --text: #F0F0F0;
+    --sub: #B0B0C0;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+                 "Hiragino Sans", "Yu Gothic", sans-serif;
+    background: linear-gradient(135deg, #1A1B2E 0%, #2A1B4E 100%);
+    color: var(--text);
+    min-height: 100vh;
+  }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 24px 16px; }
+  h1 {
+    font-size: 32px;
+    color: var(--primary);
+    text-align: center;
+    margin: 12px 0 4px;
+    text-shadow: 0 0 12px rgba(255,111,168,0.4);
+    letter-spacing: 0.06em;
+  }
+  .tagline { text-align: center; color: var(--tertiary); font-size: 14px; margin-bottom: 4px; }
+  .ver { text-align: center; color: var(--sub); font-size: 12px; margin-bottom: 24px; }
+  .card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
+  .download-btn {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    margin: 16px 0;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(255,111,168,0.4);
+    transition: transform 0.1s;
+  }
+  .download-btn:active { transform: scale(0.97); }
+  .meta { color: var(--sub); font-size: 13px; line-height: 1.7; }
+  .meta code {
+    background: rgba(0,229,255,0.1);
+    color: var(--tertiary);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    word-break: break-all;
+  }
+  h2 { color: var(--secondary); font-size: 18px; margin: 20px 0 8px; }
+  ol, ul { padding-left: 22px; line-height: 1.8; }
+  li { margin: 4px 0; }
+  .warn {
+    background: rgba(255,200,0,0.1);
+    border-left: 3px solid #FFC800;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #FFE070;
+    margin: 12px 0;
+  }
+  .info {
+    background: rgba(0,229,255,0.08);
+    border-left: 3px solid var(--tertiary);
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #C0F0FF;
+    margin: 12px 0;
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    background: var(--secondary);
+    color: white;
+    margin-left: 8px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>プリズマ☆リンク</h1>
+  <div class="tagline">Prisma Link ― 美少女連鎖パズル</div>
+  <div class="ver">v0.2.2 <span class="badge">Android 8.0+</span></div>
+
+  <div class="card">
+    <a class="download-btn" href="latest.apk" download="PrismaLink-v0.2.2.apk">📥 APK をダウンロード</a>
+    <div class="meta">
+      <strong>ファイル名</strong>: PrismaLink-v0.2.2.apk<br>
+      <strong>サイズ</strong>: 12.0 MB (12,634,215 bytes)<br>
+      <strong>パッケージ</strong>: com.karakurai.prismalink<br>
+      <strong>署名</strong>: APK Signature v2 + v3（debug keystore / 開発配布用）<br>
+      <strong>SHA-256</strong><br>
+      <code>bd190a698166634a917f5ebb97281ce40290946a32b08cb3e5f2e3cb90951ca7</code>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📲 インストール手順</h2>
+    <ol>
+      <li>上の「APK をダウンロード」ボタンをタップ</li>
+      <li>Chrome がダウンロード警告を出したら「ダウンロードを続行」</li>
+      <li>通知バーまたは「ファイル」アプリからダウンロードした APK を開く</li>
+      <li>初回は「不明なアプリのインストール」の許可を求められるので、Chrome（やファイルアプリ）に許可を与える</li>
+      <li>「インストール」をタップ</li>
+      <li>完了後、ホームから「プリズマ☆リンク」を起動</li>
+    </ol>
+
+    <div class="warn">
+      ⚠ <strong>前バージョン（旧名 "MyApp" / パッケージ <code>com.example.myapp</code>）</strong>が
+      入っている場合は、設定 → アプリ → 「MyApp」をアンインストールしてからご利用ください。
+      パッケージ ID が変わっているため、本バージョンは新規アプリとして並んで入ります。
+    </div>
+
+    <div class="info">
+      ℹ <strong>「アプリがインストールされていません」エラーが出たら</strong>:<br>
+      ① 既存の同名アプリを設定からアンインストール<br>
+      ② ストレージ空き容量を確認（最低 30 MB 推奨）<br>
+      ③ ダウンロードしたファイルサイズが 12.0 MB ちょうどか確認（中断時はファイルマネージャで削除して再ダウンロード）<br>
+      ④ 「設定 → セキュリティ → 提供元不明のアプリ」の許可を確認
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🎮 主要機能</h2>
+    <ul>
+      <li>4 ゲームモード（エンドレス / スコアアタック / ストーリー / CPU 対戦）</li>
+      <li>5 キャラ × 7 立ち絵差分</li>
+      <li>派手な連鎖演出 + 5+ 連鎖で動画自動保存</li>
+      <li>ローカルランキング TOP10（モード別）</li>
+      <li>オート＋手動セーブ（複数スロット）</li>
+      <li>オフライン完結（通信権限不要）</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🎨 アセット</h2>
+    <ul>
+      <li><strong>立ち絵 35 枚（5 キャラ × 7 表情/演出 variant）</strong>: ComfyUI + animagine-xl-4.0 で生成</li>
+      <li><strong>キャラボイス 35 ファイル</strong>: VoiceVox（四国めたん／ずんだもん／春日部つむぎ／雨晴はう／波音リツ）で生成</li>
+      <li><strong>BGM 7 曲 + SE 9 種</strong>: numpy プロシージャル合成（OGG/Vorbis）</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>ℹ 注意事項</h2>
+    <ul>
+      <li>動作確認: Android 15 (API 35) emulator で smoke 通過。実機は Android 8.0 (API 26) 以上対応</li>
+      <li>不具合報告: 開発者まで</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

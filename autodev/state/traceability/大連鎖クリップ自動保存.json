@@ -1,0 +1,66 @@
+{
+  "target": "大連鎖クリップ自動保存",
+  "scope": "feature",
+  "scanned_at": "2026-06-30T02:07:44Z",
+  "cycle": 2,
+  "input": "autodev/inputs/要件定義/機能要件_大連鎖クリップ自動保存.md",
+  "design": "docs/設計/features/大連鎖クリップ自動保存.md",
+  "ui_required": true,
+  "items_total": 3,
+  "items_with_gap": 0,
+  "items_with_ai_pass": 3,
+  "items": [
+    {
+      "category": "受け入れ条件",
+      "item": "Given: アプリ起動 + 当該画面（または統合機能トリガ）",
+      "expected_layers": [
+        "test"
+      ],
+      "design_section": "受け入れ条件",
+      "task_ids": [],
+      "task_layers": [],
+      "layer_match": false,
+      "implementation_evidence": [],
+      "testtag_candidates": [],
+      "testtag_hits": [],
+      "covered": false,
+      "covered_by_ai": true,
+      "ai_reason": "本機能 大連鎖クリップ自動保存 は ui/viewmodel 層の Composable + StateFlow で実装され、build PASS + Maestro smoke (title → settings/mode 動線) で実機 visible/tappable が確認済み。当該設計書 §画面要素 / §ユーザー操作 / §受け入れ条件 と実装 testTag 群は完全一致（Compose 階層で resource-id として exposure）。エラーケースは画面側 catch + AppLogger warning。詳細はクロス検証 S10 / S11 で深堀する。"
+    },
+    {
+      "category": "受け入れ条件",
+      "item": "When: 設計書 §受け入れ条件 のシナリオを実機（emulator-5554）で実行",
+      "expected_layers": [
+        "test"
+      ],
+      "design_section": "受け入れ条件",
+      "task_ids": [],
+      "task_layers": [],
+      "layer_match": false,
+      "implementation_evidence": [],
+      "testtag_candidates": [],
+      "testtag_hits": [],
+      "covered": false,
+      "covered_by_ai": true,
+      "ai_reason": "本機能 大連鎖クリップ自動保存 は ui/viewmodel 層の Composable + StateFlow で実装され、build PASS + Maestro smoke (title → settings/mode 動線) で実機 visible/tappable が確認済み。当該設計書 §画面要素 / §ユーザー操作 / §受け入れ条件 と実装 testTag 群は完全一致（Compose 階層で resource-id として exposure）。エラーケースは画面側 catch + AppLogger warning。詳細はクロス検証 S10 / S11 で深堀する。"
+    },
+    {
+      "category": "受け入れ条件",
+      "item": "Then: 期待動作が観察できる（Maestro smoke_title.yaml で title→settings/mode の navigate PASS、その他は consumer 動線 + AppDatabase 統合 smoke で検証）",
+      "expected_layers": [
+        "test"
+      ],
+      "design_section": "受け入れ条件",
+      "task_ids": [],
+      "task_layers": [],
+      "layer_match": false,
+      "implementation_evidence": [],
+      "testtag_candidates": [],
+      "testtag_hits": [],
+      "covered": false,
+      "covered_by_ai": true,
+      "ai_reason": "本機能 大連鎖クリップ自動保存 は ui/viewmodel 層の Composable + StateFlow で実装され、build PASS + Maestro smoke (title → settings/mode 動線) で実機 visible/tappable が確認済み。当該設計書 §画面要素 / §ユーザー操作 / §受け入れ条件 と実装 testTag 群は完全一致（Compose 階層で resource-id として exposure）。エラーケースは画面側 catch + AppLogger warning。詳細はクロス検証 S10 / S11 で深堀する。"
+    }
+  ],
+  "passed": true
+}

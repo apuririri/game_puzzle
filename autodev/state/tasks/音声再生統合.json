@@ -1,0 +1,55 @@
+{
+  "schema_version": "5.2",
+  "target": "音声再生統合",
+  "scope": "feature",
+  "design_doc_ref": "docs/設計/features/音声再生統合.md",
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "各画面の AudioCue 発火 (TitleScreen/PlayViewModel/CharacterSelect/Tutorial)",
+      "layer": "audio",
+      "category": "画面要素",
+      "design_doc_ref": {
+        "file": "docs/設計/features/音声再生統合.md",
+        "section": "画面要素"
+      },
+      "files": [
+        "app/src/main/java/com/example/myapp/audio/AudioManager.kt",
+        "app/src/main/java/com/example/myapp/ui/screen/TitleScreen.kt",
+        "app/src/main/java/com/example/myapp/ui/viewmodel/PlayViewModel.kt"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "T2",
+      "title": "各画面の AudioCue 発火 (TitleScreen/PlayViewModel/CharacterSelect/Tutorial) - ユーザー操作 & エラーケース",
+      "layer": "audio",
+      "category": "ユーザー操作",
+      "design_doc_ref": {
+        "file": "docs/設計/features/音声再生統合.md",
+        "section": "ユーザー操作"
+      },
+      "files": [
+        "app/src/main/java/com/example/myapp/audio/AudioManager.kt",
+        "app/src/main/java/com/example/myapp/ui/screen/TitleScreen.kt",
+        "app/src/main/java/com/example/myapp/ui/viewmodel/PlayViewModel.kt"
+      ],
+      "status": "completed"
+    },
+    {
+      "id": "T3",
+      "title": "各画面の AudioCue 発火 (TitleScreen/PlayViewModel/CharacterSelect/Tutorial) - 受け入れ条件 (Maestro smoke + 起動)",
+      "layer": "audio_test",
+      "category": "受け入れ条件",
+      "design_doc_ref": {
+        "file": "docs/設計/features/音声再生統合.md",
+        "section": "受け入れ条件"
+      },
+      "files": [
+        "maestro/smoke_title.yaml",
+        "autodev/evidence/screenshots/ui_phase1/title.png"
+      ],
+      "status": "completed"
+    }
+  ]
+}

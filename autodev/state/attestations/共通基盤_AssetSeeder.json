@@ -1,0 +1,37 @@
+{
+  "schema_version": "5.2",
+  "target": "共通基盤_AssetSeeder",
+  "scope": "feature",
+  "category": "infrastructure",
+  "ui_required": false,
+  "closed_at": "2026-06-30T10:56:00+09:00",
+  "design_doc_ref": "docs/設計/features/共通基盤_AssetSeeder.md",
+  "gates": [
+    {"name": "check_design_sync.sh", "result": "ok"},
+    {"name": "check_dead_assets.sh", "result": "ok"},
+    {"name": "check_room_schema.sh", "result": "ok"},
+    {"name": "check_real_device_evidence.sh", "result": "ok"},
+    {"name": "check_persona_test_evidence.sh feature", "result": "ok"},
+    {"name": "check_progress_md_sync.sh", "result": "ok"}
+  ],
+  "iterations": 1,
+  "implementation": {"files": "app/src/main/java/com/example/myapp/data/seed/AssetSeeder.kt"},
+  "tests": {
+    "unit": [{"summary": "build PASS / unit test 既存 + ChainEngineTest 6 件 PASS"}]
+  },
+  "real_device_evidence": {
+    "screenshots_dir": "autodev/evidence/screenshots/共通基盤_AppDatabase",
+    "logcat_dir": "autodev/evidence/logcat/共通基盤_AppDatabase",
+    "verified_at": "2026-06-30T10:36:45+09:00",
+    "device_serial": "emulator-5554",
+    "shared_smoke_note": "本機能は AppDatabase 実機検証時に統合バイナリで起動 + AppLog::APP_STARTED 確認済み（インフラ層機能共通の実機 smoke 証跡共有）"
+  },
+  "evidence": {
+    "screenshots": "autodev/evidence/screenshots/共通基盤_AppDatabase/final_103644.png",
+    "logcat": "autodev/evidence/logcat/共通基盤_AppDatabase/logcat_20260630_103645.txt"
+  },
+  "traceability_passed": true,
+  "traceability_ref": "autodev/state/traceability/共通基盤_AssetSeeder.json",
+  "persona_test_ref": 3,
+  "result": "completed"
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": "5.2",
+  "scope": "system",
+  "phase": "S10",
+  "executed_at": "2026-06-30T11:11:30+09:00",
+  "device_serial": "emulator-5554",
+  "checks": [
+    {
+      "name": "IV1: check_no_mocks.sh",
+      "result": "PASS",
+      "detail": "プロダクション側 (app/src/main) にモック/スタブ/TODO 残存なし"
+    },
+    {
+      "name": "IV2: モック廃止 fix-loop",
+      "result": "N/A",
+      "detail": "IV1 で検出ゼロのため不要"
+    },
+    {
+      "name": "IV3: HEADFUL 全機能 + 機能横断シナリオ実機検証",
+      "result": "PASS",
+      "detail": "Maestro flow maestro/integration_full.yaml で title → character_select(confirm) → settings(全 toggle 確認) → tutorial(skip) → ranking(tab) → mode_select → endless(全操作ボタン visible 確認) を全 testTag PASS",
+      "flow": "maestro/integration_full.yaml",
+      "log": "autodev/logs/2026-06-30/maestro_111002.log"
+    },
+    {
+      "name": "IV4: ペルソナ視点改善要望",
+      "result": "PASS_WITH_FIXES",
+      "detail": "1 件検出 (P1/P4 視点: エンドレス画面の操作ボタンが画面外に押し出される)。即時 fix-loop で PlayScreen.kt の Box modifier を aspectRatio から weight(1f) に変更し再検証 PASS",
+      "fix_commit": "本コミット内に含む",
+      "fixed_files": ["app/src/main/java/com/example/myapp/ui/screen/PlayScreen.kt"]
+    },
+    {
+      "name": "IV5: 改善要望 fix-loop",
+      "result": "PASS",
+      "detail": "IV4 の 1 件を即修正し IV3 を再走で全 PASS。残存改善要望なし"
+    }
+  ],
+  "evidence": {
+    "screenshots": [
+      "autodev/evidence/screenshots/ui_phase1/title.png",
+      "autodev/evidence/screenshots/ui_phase2_endless/endless_actual.png",
+      "autodev/evidence/screenshots/s10_integration/endless_after_fix.png"
+    ],
+    "logcat": "autodev/evidence/logcat/s10_integration/logcat_20260630_111135.txt",
+    "maestro_logs": [
+      "autodev/logs/2026-06-30/maestro_110548.log",
+      "autodev/logs/2026-06-30/maestro_111002.log"
+    ]
+  },
+  "issues_found": 1,
+  "issues_fixed": 1,
+  "blocking_issues": [],
+  "result": "completed"
+}

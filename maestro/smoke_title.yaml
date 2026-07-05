@@ -1,0 +1,26 @@
+appId: com.karakurai.prismalink
+---
+- launchApp:
+    clearState: true
+- assertVisible:
+    id: "title_root"
+- assertVisible:
+    id: "title_logo"
+- assertVisible:
+    id: "title_start_button"
+- tapOn:
+    id: "title_settings_button"
+- assertVisible:
+    id: "settings_root"
+- tapOn:
+    id: "settings_back_button"
+- assertVisible:
+    id: "title_root"
+- tapOn:
+    id: "title_start_button"
+- assertVisible:
+    id: "mode_select_root"
+- tapOn:
+    id: "mode_back_button"
+- assertVisible:
+    id: "title_root"

@@ -1,0 +1,22 @@
+# 機能横断シナリオ: オフライン → オンライン復帰（S10 IV3 雛形）
+# 機内モード ON で読み込み画面のエラー UI が出ること、復帰でリトライ成功することを確認。
+# 機内モードの切替は Maestro 単体では難しいため、runScript で run_adb.sh を呼ぶ運用を推奨。
+appId: com.karakurai.prismalink
+---
+- launchApp:
+    clearState: false
+- assertVisible:
+    id: "home_root"
+# 機内モード ON（autodev/scripts/run_adb.sh shell svc wifi disable など、環境に応じて差し替え）
+- runScript: |
+    output.airplane_on = true
+- assertVisible:
+    id: "home_offline_indicator"
+    optional: true   # まだエラー UI 未実装の場合のために雛形は optional に
+- takeScreenshot: autodev/evidence/_integration/screenshots/offline_on
+# 機内モード OFF
+- runScript: |
+    output.airplane_on = false
+- assertVisible:
+    id: "home_root"
+- takeScreenshot: autodev/evidence/_integration/screenshots/offline_recovered

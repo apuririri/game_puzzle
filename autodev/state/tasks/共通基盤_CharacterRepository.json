@@ -1,0 +1,23 @@
+{
+  "schema_version": "5.2",
+  "target": "共通基盤_CharacterRepository",
+  "scope": "feature",
+  "design_doc_ref": "docs/設計/features/共通基盤_CharacterRepository.md",
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "Character ドメイン公開",
+      "layer": "data",
+      "category": "データモデル",
+      "design_doc_ref": {
+        "file": "docs/設計/features/共通基盤_CharacterRepository.md",
+        "section": "機能概要"
+      },
+      "files": [
+        "app/src/main/java/com/example/myapp/data/repository/CharacterRepository.kt",
+        "app/src/main/java/com/example/myapp/domain/model/Character.kt"
+      ],
+      "status": "completed"
+    }
+  ]
+}

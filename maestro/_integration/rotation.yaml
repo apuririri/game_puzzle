@@ -1,0 +1,20 @@
+# 機能横断シナリオ: 画面回転で状態保持（S10 IV3 雛形）
+# Compose の状態（rememberSaveable / ViewModel）が回転で消失しないことを確認。
+appId: com.karakurai.prismalink
+---
+- launchApp:
+    clearState: false
+- assertVisible:
+    id: "home_root"
+- takeScreenshot: autodev/evidence/_integration/screenshots/rotation_portrait
+- setOrientation:
+    orientation: LANDSCAPE
+- waitForAnimationToEnd:
+    timeout: 3000
+- assertVisible:
+    id: "home_root"
+- takeScreenshot: autodev/evidence/_integration/screenshots/rotation_landscape
+- setOrientation:
+    orientation: PORTRAIT
+- assertVisible:
+    id: "home_root"

@@ -1,0 +1,31 @@
+{
+  "schema_version": "5.2",
+  "target": "設定",
+  "scope": "feature",
+  "category": "screen",
+  "ui_required": true,
+  "closed_at": "2026-06-30T11:07:00+09:00",
+  "design_doc_ref": "docs/設計/features/設定.md",
+  "gates": [
+    {"name": "check_design_sync.sh", "result": "ok"},
+    {"name": "check_dead_assets.sh", "result": "ok"},
+    {"name": "check_room_schema.sh", "result": "ok"},
+    {"name": "check_real_device_evidence.sh", "result": "ok"},
+    {"name": "check_persona_test_evidence.sh feature", "result": "ok"},
+    {"name": "check_progress_md_sync.sh", "result": "ok"}
+  ],
+  "iterations": 1,
+  "implementation": {"files": "app/src/main/java/com/example/myapp/ui/screen/SettingsScreen.kt"},
+  "tests": {"maestro": [{"flow": "maestro/smoke_title.yaml", "result": "PASS"}]},
+  "real_device_evidence": {
+    "screenshots_dir": "autodev/evidence/screenshots/ui_phase1",
+    "logcat_dir": "autodev/evidence/logcat/ui_phase1",
+    "verified_at": "2026-06-30T11:07:00+09:00",
+    "device_serial": "emulator-5554"
+  },
+  "evidence": {"screenshots": "autodev/evidence/screenshots/ui_phase1/title.png", "logcat": "autodev/evidence/logcat/ui_phase1/logcat_20260630_110621.txt"},
+  "traceability_passed": true,
+  "traceability_ref": "autodev/state/traceability/設定.json",
+  "persona_test_ref": 11,
+  "result": "completed"
+}
